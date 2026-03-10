@@ -1,0 +1,67 @@
+name: Scheduled Retrain
+
+on:
+  schedule:
+    - cron: "0 2 * * 0"    # Every Sunday at 02:00 UTC
+  workflow_dispatch:        # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Authenticate to GCS
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_JSON }}
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          python -m ipykernel install --user --name python3
+
+      - name: Cache DVC data
+        uses: actions/cache@v4
+        with:
+          path: .dvc/cache
+          key: dvc-${{ hashFiles('*.dvc', 'dvc.lock') }}
+          restore-keys: dvc-
+
+      - name: Pull latest data
+        run: dvc pull
+
+      - name: Reproduce full pipeline (retrain)
+        run: dvc repro
+
+      - name: Push artifacts to DVC remote
+        run: dvc push
+
+      - name: Commit updated pipeline lock & metrics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dvc.lock metrics.json
+          git diff --cached --quiet || git commit -m "chore(ci): scheduled retrain $(date -I) [skip ci]"
+          git push
+
+      - name: Upload retrain artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: retrain-${{ github.run_id }}
+          path: |
+            models/*.pt
+            metrics.json
+            plots/
+          retention-days: 30

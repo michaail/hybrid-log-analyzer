@@ -1,0 +1,29 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# DVC
+.dvc/cache/
+.dvc/tmp/
+
+# Model artifacts
+*.pt
+*.pth
+*.onnx
+
+# Pipeline outputs
+outputs/
+
+# GCP credentials (auto-created by google-github-actions/auth)
+gha-creds-*.json
+
+# OS
+.DS_Store

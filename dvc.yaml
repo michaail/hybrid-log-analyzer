@@ -1,0 +1,45 @@
+stages:
+  preprocess:
+    cmd: python src/preprocessing.py
+    deps:
+      - src/preprocessing.py
+      - data/raw
+    outs:
+      - data/processed
+
+  train:
+    cmd: >-
+      papermill notebooks/train_gat.ipynb outputs/train_output.ipynb
+      -f configs/params.yaml
+      -k python3
+      --execution-timeout 7200
+      --log-output
+    deps:
+      - notebooks/train_gat.ipynb
+      - data/processed
+      - configs/params.yaml
+      - src/model.py
+      - src/utils.py
+    outs:
+      - models/gat_model.pt
+
+  evaluate:
+    cmd: >-
+      papermill notebooks/evaluate.ipynb outputs/evaluate_output.ipynb
+      -k python3
+      --execution-timeout 3600
+      --log-output
+    deps:
+      - notebooks/evaluate.ipynb
+      - models/gat_model.pt
+      - data/processed
+      - src/evaluate.py
+      - src/utils.py
+    metrics:
+      - metrics.json:
+          cache: false
+    plots:
+      - plots/roc.png:
+          cache: false
+      - plots/loss.png:
+          cache: false

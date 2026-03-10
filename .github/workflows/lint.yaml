@@ -1,0 +1,41 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install linting tools
+        run: pip install ruff mypy nbstripout
+
+      - name: Ruff — lint Python code
+        run: ruff check src/ tests/
+
+      - name: Ruff — format check
+        run: ruff format --check src/ tests/
+
+      - name: Mypy — type checking
+        run: mypy src/ --ignore-missing-imports
+
+      - name: nbstripout — verify notebook outputs are stripped
+        run: |
+          for nb in notebooks/*.ipynb; do
+            if ! nbstripout --is-stripped "$nb"; then
+              echo "ERROR: $nb contains outputs. Run 'nbstripout $nb' before committing."
+              exit 1
+            fi
+          done

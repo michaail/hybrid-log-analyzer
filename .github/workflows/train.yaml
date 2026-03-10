@@ -1,0 +1,101 @@
+name: Train
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "notebooks/**"
+      - "src/**"
+      - "configs/**"
+      - "dvc.yaml"
+  workflow_dispatch:
+    inputs:
+      learning_rate:
+        description: "Learning rate"
+        default: "0.001"
+        type: string
+      epochs:
+        description: "Number of training epochs"
+        default: "50"
+        type: string
+      GAT_attention_heads:
+        description: "Number of GAT attention heads"
+        default: "4"
+        type: string
+
+permissions:
+  contents: write         # needed to push dvc.lock back
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Authenticate to GCS
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_JSON }}
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          python -m ipykernel install --user --name python3
+
+      - name: Cache DVC data
+        uses: actions/cache@v4
+        with:
+          path: .dvc/cache
+          key: dvc-${{ hashFiles('*.dvc', 'dvc.lock') }}
+          restore-keys: dvc-
+
+      - name: Pull data from DVC remote
+        run: dvc pull
+
+      - name: Override params from workflow_dispatch (if provided)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          python -c "
+          import yaml
+          with open('configs/params.yaml') as f:
+              params = yaml.safe_load(f)
+          params['learning_rate'] = float('${{ inputs.learning_rate }}')
+          params['epochs'] = int('${{ inputs.epochs }}')
+          params['GAT_attention_heads'] = int('${{ inputs.GAT_attention_heads }}')
+          with open('configs/params.yaml', 'w') as f:
+              yaml.dump(params, f, default_flow_style=False)
+          print('Updated params:', params)
+          "
+
+      - name: Reproduce full pipeline
+        run: dvc repro
+
+      - name: Push artifacts to DVC remote
+        run: dvc push
+
+      - name: Commit updated pipeline lock & metrics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dvc.lock metrics.json
+          git diff --cached --quiet || git commit -m "chore(ci): update dvc.lock & metrics [skip ci]"
+          git push
+
+      - name: Upload training artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: train-${{ github.sha }}
+          path: |
+            models/*.pt
+            metrics.json
+            plots/
+            outputs/train_output.ipynb
+          retention-days: 30

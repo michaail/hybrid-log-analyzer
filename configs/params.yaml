@@ -1,0 +1,36 @@
+# ── Hyperparameters ──────────────────────────────────────────
+# These values are injected into notebooks via Papermill (-f configs/params.yaml)
+# and consumed by DVC stages as dependencies for cache invalidation.
+
+# Data
+dataset_path: "data/processed"
+raw_data_dir: "data/raw"
+test_split: 0.2
+random_seed: 42
+
+# GNN / GAT Architecture
+in_channels: 16
+hidden_dim: 64
+out_dim: 32
+GAT_attention_heads: 4
+dropout: 0.2
+
+# Training
+learning_rate: 0.001
+batch_size: 32
+epochs: 50
+weight_decay: 0.0001
+patience: 10          # early stopping patience
+
+# Graph Autoencoder
+reconstruction_threshold: 0.5
+
+# LLM (API-based)
+llm_provider: "openai"          # "openai" | "gemini"
+llm_model: "gpt-4o"
+llm_temperature: 0.1
+llm_max_tokens: 1024
+
+# Checkpointing
+checkpoint_dir: "models"
+save_every_n_epochs: 5
