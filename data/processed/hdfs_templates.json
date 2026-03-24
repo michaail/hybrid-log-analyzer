@@ -3,83 +3,84 @@
     "template": "<*> <*> <*> INFO dfs.DataNode$DataXceiver: Receiving block <*> src: <*> dest: <*>",
     "count": 1723232,
     "examples": [
-      "081110 000000 4091 INFO dfs.DataNode$DataXceiver: Receiving block blk_8194054640767443558 src: /10.251.106.10:39132 dest: /10.251.106.10:50010",
-      "081110 000000 4151 INFO dfs.DataNode$DataXceiver: Receiving block blk_1416026359654256968 src: /10.250.17.225:56537 dest: /10.250.17.225:50010",
-      "081110 000000 4401 INFO dfs.DataNode$DataXceiver: Receiving block blk_-5700354106678540870 src: /10.251.126.5:57062 dest: /10.251.126.5:50010",
-      "081110 000000 4455 INFO dfs.DataNode$DataXceiver: Receiving block blk_-423257072403691846 src: /10.250.18.114:47195 dest: /10.250.18.114:50010",
-      "081110 000000 4502 INFO dfs.DataNode$DataXceiver: Receiving block blk_-4152825713244027208 src: /10.251.66.3:38894 dest: /10.251.66.3:50010"
+      "081109 203518 143 INFO dfs.DataNode$DataXceiver: Receiving block blk_-1608999687919862906 src: /10.250.19.102:54106 dest: /10.250.19.102:50010",
+      "081109 203519 143 INFO dfs.DataNode$DataXceiver: Receiving block blk_-1608999687919862906 src: /10.250.10.6:40524 dest: /10.250.10.6:50010",
+      "081109 203519 145 INFO dfs.DataNode$DataXceiver: Receiving block blk_-1608999687919862906 src: /10.250.14.224:42420 dest: /10.250.14.224:50010",
+      "081109 203520 142 INFO dfs.DataNode$DataXceiver: Receiving block blk_7503483334202473044 src: /10.251.215.16:55695 dest: /10.251.215.16:50010",
+      "081109 203520 145 INFO dfs.DataNode$DataXceiver: Receiving block blk_7503483334202473044 src: /10.250.19.102:34232 dest: /10.250.19.102:50010"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: <*> <*>",
     "count": 575061,
     "examples": [
-      "081110 000000 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/sortrand/_temporary/_task_200811092030_0002_r_000003_0/part-00003. blk_1416026359654256968",
-      "081110 000000 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/sortrand/_temporary/_task_200811092030_0002_r_000222_0/part-00222. blk_8194054640767443558",
-      "081110 000000 29 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/sortrand/_temporary/_task_200811092030_0002_r_000242_0/part-00242. blk_-5700354106678540870",
-      "081110 000000 30 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/sortrand/_temporary/_task_200811092030_0002_r_000224_0/part-00224. blk_-423257072403691846",
-      "081110 000000 33 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/sortrand/_temporary/_task_200811092030_0002_r_000223_0/part-00223. blk_2320022332419200432"
+      "081109 203518 35 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /mnt/hadoop/mapred/system/job_200811092030_0001/job.jar. blk_-1608999687919862906",
+      "081109 203520 26 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /mnt/hadoop/mapred/system/job_200811092030_0001/job.split. blk_7503483334202473044",
+      "081109 203521 29 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /mnt/hadoop/mapred/system/job_200811092030_0001/job.xml. blk_-3544583377289625738",
+      "081109 203523 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/rand/_logs/history/ip-10-250-19-102.ec2.internal_1226291400491_job_200811092030_0001_conf.xml. blk_-9073992586687739851",
+      "081109 203529 29 INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /user/root/rand/_temporary/_task_200811092030_0001_m_000079_0/part-00079. blk_7854771516489510256"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$PacketResponder: PacketResponder <*> for block <*> terminating",
     "count": 1706679,
     "examples": [
-      "081110 000000 4080 INFO dfs.DataNode$PacketResponder: PacketResponder 2 for block blk_-5269012044061164886 terminating",
-      "081110 000000 4305 INFO dfs.DataNode$PacketResponder: PacketResponder 1 for block blk_3323335166371813431 terminating",
-      "081110 000000 4380 INFO dfs.DataNode$PacketResponder: PacketResponder 0 for block blk_-3699058693259011470 terminating",
-      "081110 000000 4382 INFO dfs.DataNode$PacketResponder: PacketResponder 0 for block blk_-7410438640270104875 terminating",
-      "081110 000000 4418 INFO dfs.DataNode$PacketResponder: PacketResponder 1 for block blk_-1781479143326700605 terminating"
+      "081109 203519 145 INFO dfs.DataNode$PacketResponder: PacketResponder 1 for block blk_-1608999687919862906 terminating",
+      "081109 203519 145 INFO dfs.DataNode$PacketResponder: PacketResponder 2 for block blk_-1608999687919862906 terminating",
+      "081109 203519 147 INFO dfs.DataNode$PacketResponder: PacketResponder 0 for block blk_-1608999687919862906 terminating",
+      "081109 203521 145 INFO dfs.DataNode$PacketResponder: PacketResponder 1 for block blk_7503483334202473044 terminating",
+      "081109 203521 146 INFO dfs.DataNode$PacketResponder: PacketResponder 0 for block blk_7503483334202473044 terminating"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$PacketResponder: Received block <*> of size <*> from <*>",
     "count": 1706514,
     "examples": [
-      "081110 000000 4305 INFO dfs.DataNode$PacketResponder: Received block blk_3323335166371813431 of size 67108864 from /10.251.70.5",
-      "081110 000000 4380 INFO dfs.DataNode$PacketResponder: Received block blk_-3699058693259011470 of size 67108864 from /10.250.15.240",
-      "081110 000000 4382 INFO dfs.DataNode$PacketResponder: Received block blk_-7410438640270104875 of size 67108864 from /10.251.125.174",
-      "081110 000000 4418 INFO dfs.DataNode$PacketResponder: Received block blk_-1781479143326700605 of size 67108864 from /10.251.91.84",
-      "081110 000000 4424 INFO dfs.DataNode$PacketResponder: Received block blk_-47991590309816262 of size 67108864 from /10.250.11.53"
+      "081109 203519 145 INFO dfs.DataNode$PacketResponder: Received block blk_-1608999687919862906 of size 91178 from /10.250.10.6",
+      "081109 203519 145 INFO dfs.DataNode$PacketResponder: Received block blk_-1608999687919862906 of size 91178 from /10.250.19.102",
+      "081109 203519 147 INFO dfs.DataNode$PacketResponder: Received block blk_-1608999687919862906 of size 91178 from /10.250.14.224",
+      "081109 203521 145 INFO dfs.DataNode$PacketResponder: Received block blk_7503483334202473044 of size 233217 from /10.251.215.16",
+      "081109 203521 146 INFO dfs.DataNode$PacketResponder: Received block blk_7503483334202473044 of size 233217 from /10.251.71.16"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: <*> is added to <*> size <*>",
     "count": 1719741,
     "examples": [
-      "081110 000000 26 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.90.134:50010 is added to blk_-8838148228620368586 size 67108864",
-      "081110 000000 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.250.11.53:50010 is added to blk_-47991590309816262 size 67108864",
-      "081110 000000 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.250.17.225:50010 is added to blk_-946360753285463514 size 67108864",
-      "081110 000000 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.123.195:50010 is added to blk_-946360753285463514 size 67108864",
-      "081110 000000 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.198.33:50010 is added to blk_-7410438640270104875 size 67108864"
+      "081109 203519 29 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.250.10.6:50010 is added to blk_-1608999687919862906 size 91178",
+      "081109 203519 30 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.111.209:50010 is added to blk_-1608999687919862906 size 91178",
+      "081109 203519 31 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.250.14.224:50010 is added to blk_-1608999687919862906 size 91178",
+      "081109 203521 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.106.10:50010 is added to blk_7503483334202473044 size 233217",
+      "081109 203521 30 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.71.193:50010 is added to blk_-1608999687919862906 size 91178"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$DataXceiver: Received block <*> src: <*> dest: <*> of size <*>",
     "count": 7097,
     "examples": [
-      "081110 001515 4926 INFO dfs.DataNode$DataXceiver: Received block blk_-4567777441263358151 src: /10.251.106.10:59684 dest: /10.251.106.10:50010 of size 67108864",
-      "081110 010203 4982 INFO dfs.DataNode$DataXceiver: Received block blk_-1188252971231200744 src: /10.251.111.228:55724 dest: /10.251.111.228:50010 of size 91178",
-      "081110 010203 5048 INFO dfs.DataNode$DataXceiver: Received block blk_9207307544525686447 src: /10.251.121.224:59984 dest: /10.251.121.224:50010 of size 239277",
-      "081110 010203 5079 INFO dfs.DataNode$DataXceiver: Received block blk_-1188252971231200744 src: /10.251.203.80:52298 dest: /10.251.203.80:50010 of size 91178",
-      "081110 010208 5055 INFO dfs.DataNode$DataXceiver: Received block blk_-1188252971231200744 src: /10.251.43.21:57625 dest: /10.251.43.21:50010 of size 91178"
+      "081109 203521 143 INFO dfs.DataNode$DataXceiver: Received block blk_-1608999687919862906 src: /10.251.215.16:52002 dest: /10.251.215.16:50010 of size 91178",
+      "081109 203521 147 INFO dfs.DataNode$DataXceiver: Received block blk_-1608999687919862906 src: /10.250.14.224:35754 dest: /10.250.14.224:50010 of size 91178",
+      "081109 203526 146 INFO dfs.DataNode$DataXceiver: Received block blk_-1608999687919862906 src: /10.251.215.16:51177 dest: /10.251.215.16:50010 of size 91178",
+      "081109 203526 146 INFO dfs.DataNode$DataXceiver: Received block blk_-1608999687919862906 src: /10.251.74.79:60333 dest: /10.251.74.79:50010 of size 91178",
+      "081109 203527 147 INFO dfs.DataNode$DataXceiver: Received block blk_-1608999687919862906 src: /10.251.107.19:56341 dest: /10.251.107.19:50010 of size 91178"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$DataTransfer: <*> block <*> to <*>",
     "count": 6937,
     "examples": [
-      "081110 001515 4315 INFO dfs.DataNode$DataTransfer: 10.251.106.10:50010:Transmitted block blk_-4567777441263358151 to /10.251.39.179:50010",
-      "081110 010203 5034 INFO dfs.DataNode$DataTransfer: 10.251.203.80:50010:Transmitted block blk_-1188252971231200744 to /10.251.111.228:50010",
-      "081110 010203 5071 INFO dfs.DataNode$DataTransfer: 10.251.121.224:50010:Transmitted block blk_9207307544525686447 to /10.251.74.134:50010",
-      "081110 010208 4985 INFO dfs.DataNode$DataTransfer: 10.251.43.21:50010:Transmitted block blk_-1188252971231200744 to /10.251.106.37:50010",
-      "081110 010209 5084 INFO dfs.DataNode$DataTransfer: 10.251.111.228:50010:Transmitted block blk_-1188252971231200744 to /10.251.127.47:50010"
+      "081109 203521 147 INFO dfs.DataNode$DataTransfer: 10.250.14.224:50010:Transmitted block blk_-1608999687919862906 to /10.251.215.16:50010",
+      "081109 203526 152 INFO dfs.DataNode$DataTransfer: 10.251.215.16:50010:Transmitted block blk_-1608999687919862906 to /10.251.74.79:50010",
+      "081109 203527 148 INFO dfs.DataNode$DataTransfer: 10.251.107.19:50010:Transmitted block blk_-1608999687919862906 to /10.251.31.5:50010",
+      "081109 203532 161 INFO dfs.DataNode$DataTransfer: 10.251.31.5:50010:Transmitted block blk_-1608999687919862906 to /10.251.90.64:50010",
+      "081109 204522 528 INFO dfs.DataNode$DataTransfer: 10.251.43.21:50010:Transmitted block blk_-8213344449220111733 to /10.251.30.134:50010"
     ]
   },
   {
     "template": "081109 203521 19 INFO <*> <*> <*> <*> to <*> <*> <*> <*> <*> 10.251.71.193:50010",
     "count": 2,
     "examples": [
+      "081109 203521 19 INFO dfs.DataNode: 10.250.14.224:50010 Starting thread to transfer block blk_-1608999687919862906 to 10.251.215.16:50010, 10.251.71.193:50010",
       "081109 203521 19 INFO dfs.FSNamesystem: BLOCK* ask 10.250.14.224:50010 to replicate blk_-1608999687919862906 to datanode(s) 10.251.215.16:50010 10.251.71.193:50010"
     ]
   },
@@ -87,279 +88,284 @@
     "template": "<*> <*> <*> INFO dfs.DataNode$DataXceiver: <*> Served block <*> to <*>",
     "count": 428726,
     "examples": [
-      "081110 010201 4984 INFO dfs.DataNode$DataXceiver: 10.251.107.196:50010 Served block blk_9207307544525686447 to /10.250.19.102",
-      "081110 010201 4998 INFO dfs.DataNode$DataXceiver: 10.251.214.112:50010 Served block blk_-1188252971231200744 to /10.250.19.102",
-      "081110 010201 5076 INFO dfs.DataNode$DataXceiver: 10.251.111.228:50010 Served block blk_7015840645307191473 to /10.250.19.102",
-      "081110 010206 4987 INFO dfs.DataNode$DataXceiver: 10.251.195.33:50010 Served block blk_7015840645307191473 to /10.251.214.67",
-      "081110 010206 5080 INFO dfs.DataNode$DataXceiver: 10.251.111.228:50010 Served block blk_-1188252971231200744 to /10.251.214.67"
+      "081109 203523 148 INFO dfs.DataNode$DataXceiver: 10.250.11.100:50010 Served block blk_-3544583377289625738 to /10.250.19.102",
+      "081109 203523 149 INFO dfs.DataNode$DataXceiver: 10.251.111.209:50010 Served block blk_-1608999687919862906 to /10.250.19.102",
+      "081109 203525 150 INFO dfs.DataNode$DataXceiver: 10.251.215.16:50010 Served block blk_7503483334202473044 to /10.250.19.102",
+      "081109 203526 149 INFO dfs.DataNode$DataXceiver: 10.251.39.179:50010 Served block blk_-3544583377289625738 to /10.250.18.114",
+      "081109 203526 150 INFO dfs.DataNode$DataXceiver: 10.251.197.226:50010 Served block blk_-3544583377289625738 to /10.251.199.225"
     ]
   },
   {
     "template": "<*> <*> 19 INFO dfs.FSNamesystem: BLOCK* ask <*> to replicate <*> to datanode(s) <*> <*>",
     "count": 164,
     "examples": [
-      "081110 010202 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.203.80:50010 to replicate blk_-1188252971231200744 to datanode(s) 10.251.111.228:50010 10.251.43.21:50010",
-      "081110 010205 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.43.21:50010 to replicate blk_-1188252971231200744 to datanode(s) 10.251.106.37:50010 10.251.31.5:50010",
-      "081110 010208 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.111.228:50010 to replicate blk_-1188252971231200744 to datanode(s) 10.251.127.47:50010 10.251.107.50:50010",
-      "081110 014614 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.31.180:50010 to replicate blk_7008279672769077211 to datanode(s) 10.251.91.159:50010 10.251.39.192:50010",
-      "081110 014705 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.194.147:50010 to replicate blk_-4408997359177208235 to datanode(s) 10.251.202.209:50010 10.250.7.244:50010"
+      "081109 203524 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.215.16:50010 to replicate blk_-1608999687919862906 to datanode(s) 10.251.74.79:50010 10.251.107.19:50010",
+      "081109 203527 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.107.19:50010 to replicate blk_-1608999687919862906 to datanode(s) 10.251.31.5:50010 10.251.71.240:50010",
+      "081109 204638 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.71.146:50010 to replicate blk_-4304326910587241051 to datanode(s) 10.251.127.191:50010 10.251.110.196:50010",
+      "081109 205154 19 INFO dfs.FSNamesystem: BLOCK* ask 10.250.7.32:50010 to replicate blk_101531001839995775 to datanode(s) 10.251.199.225:50010 10.251.122.65:50010",
+      "081109 211055 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.42.16:50010 to replicate blk_7263944332659641248 to datanode(s) 10.250.13.188:50010 10.251.26.131:50010"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode: <*> Starting thread to transfer block <*> to <*> <*>",
     "count": 164,
     "examples": [
-      "081110 091132 18 INFO dfs.DataNode: 10.251.67.225:50010 Starting thread to transfer block blk_1535304869644844460 to 10.251.43.147:50010, 10.251.65.203:50010",
-      "081110 091133 19 INFO dfs.DataNode: 10.251.199.19:50010 Starting thread to transfer block blk_1535304869644844460 to 10.251.194.213:50010, 10.251.203.179:50010",
-      "081110 091137 19 INFO dfs.DataNode: 10.251.203.179:50010 Starting thread to transfer block blk_1535304869644844460 to 10.250.7.244:50010, 10.251.31.5:50010",
-      "081110 103154 19 INFO dfs.DataNode: 10.251.194.245:50010 Starting thread to transfer block blk_-3907603481176056256 to 10.251.75.163:50010, 10.251.111.209:50010",
-      "081110 103200 19 INFO dfs.DataNode: 10.251.194.245:50010 Starting thread to transfer block blk_-3907603481176056256 to 10.251.91.84:50010, 10.251.73.220:50010"
+      "081109 203526 19 INFO dfs.DataNode: 10.251.215.16:50010 Starting thread to transfer block blk_-1608999687919862906 to 10.251.74.79:50010, 10.251.107.19:50010",
+      "081109 203527 19 INFO dfs.DataNode: 10.251.107.19:50010 Starting thread to transfer block blk_-1608999687919862906 to 10.251.31.5:50010, 10.251.71.240:50010",
+      "081109 204641 19 INFO dfs.DataNode: 10.251.71.146:50010 Starting thread to transfer block blk_-4304326910587241051 to 10.251.127.191:50010, 10.251.110.196:50010",
+      "081109 205155 19 INFO dfs.DataNode: 10.250.7.32:50010 Starting thread to transfer block blk_101531001839995775 to 10.251.199.225:50010, 10.251.122.65:50010",
+      "081109 211058 19 INFO dfs.DataNode: 10.251.42.16:50010 Starting thread to transfer block blk_7263944332659641248 to 10.250.13.188:50010, 10.251.26.131:50010"
     ]
   },
   {
     "template": "<*> <*> 19 INFO dfs.FSNamesystem: BLOCK* ask <*> to replicate <*> to datanode(s) <*>",
     "count": 6837,
     "examples": [
-      "081110 001423 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.106.10:50010 to replicate blk_-4567777441263358151 to datanode(s) 10.251.39.179:50010",
-      "081110 010202 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.121.224:50010 to replicate blk_9207307544525686447 to datanode(s) 10.251.74.134:50010",
-      "081110 010211 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.31.5:50010 to replicate blk_-1188252971231200744 to datanode(s) 10.250.18.114:50010",
-      "081110 011310 19 INFO dfs.FSNamesystem: BLOCK* ask 10.250.6.214:50010 to replicate blk_-7719011703354729576 to datanode(s) 10.251.43.210:50010",
-      "081110 011310 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.30.6:50010 to replicate blk_-3754193874376662386 to datanode(s) 10.251.125.174:50010"
+      "081109 203530 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.31.5:50010 to replicate blk_-1608999687919862906 to datanode(s) 10.251.90.64:50010",
+      "081109 204520 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.43.21:50010 to replicate blk_-8213344449220111733 to datanode(s) 10.251.30.134:50010",
+      "081109 204556 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.123.20:50010 to replicate blk_-8191677345482862686 to datanode(s) 10.251.202.209:50010",
+      "081109 204556 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.31.242:50010 to replicate blk_-919439116365725304 to datanode(s) 10.251.65.203:50010",
+      "081109 204556 19 INFO dfs.FSNamesystem: BLOCK* ask 10.251.39.64:50010 to replicate blk_-6899869435641005946 to datanode(s) 10.250.7.230:50010"
     ]
   },
   {
     "template": "<*> <*> 13 INFO dfs.DataBlockScanner: Verification succeeded for <*>",
     "count": 120036,
     "examples": [
-      "081110 000001 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_-3130931879184502540",
-      "081110 000001 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_-9167135200977343600",
-      "081110 000002 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_3825290935706038403",
-      "081110 000004 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_-974548084319180744",
-      "081110 000005 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_2752638602026311752"
+      "081109 203552 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_-9073992586687739851",
+      "081109 203709 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_-2917825689581470793",
+      "081109 203712 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_-6370470857048627387",
+      "081109 203716 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_-1470784088028862059",
+      "081109 203719 13 INFO dfs.DataBlockScanner: Verification succeeded for blk_-1548346834251221499"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$PacketResponder: PacketResponder <*> <*> Exception <*>",
     "count": 29,
     "examples": [
+      "081109 203634 190 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-3102267849859399193 2 Exception java.io.EOFException",
+      "081109 205355 825 INFO dfs.DataNode$PacketResponder: PacketResponder blk_1528078116812077719 2 Exception java.io.EOFException",
       "081110 020027 5501 INFO dfs.DataNode$PacketResponder: PacketResponder blk_8085135783040518166 1 Exception java.nio.channels.ClosedByInterruptException",
       "081110 104822 7267 INFO dfs.DataNode$PacketResponder: PacketResponder blk_8516616325149469651 1 Exception java.nio.channels.ClosedByInterruptException",
-      "081110 111825 9786 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-3794935441407979230 2 Exception java.io.EOFException",
-      "081110 211038 14685 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-516029862489211143 2 Exception java.io.EOFException",
-      "081110 211102 14528 INFO dfs.DataNode$PacketResponder: PacketResponder blk_844104329351281298 2 Exception java.io.EOFException"
+      "081110 111825 9786 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-3794935441407979230 2 Exception java.io.EOFException"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$DataXceiver: writeBlock <*> received exception java.io.IOException: Could not read from stream",
     "count": 3226,
     "examples": [
-      "081110 000015 4451 INFO dfs.DataNode$DataXceiver: writeBlock blk_-8426563416414717720 received exception java.io.IOException: Could not read from stream",
-      "081110 000022 4484 INFO dfs.DataNode$DataXceiver: writeBlock blk_-2071456919707338634 received exception java.io.IOException: Could not read from stream",
-      "081110 000025 4532 INFO dfs.DataNode$DataXceiver: writeBlock blk_-3408464434262389388 received exception java.io.IOException: Could not read from stream",
-      "081110 000030 4508 INFO dfs.DataNode$DataXceiver: writeBlock blk_-8738376043958576460 received exception java.io.IOException: Could not read from stream",
-      "081110 000037 4503 INFO dfs.DataNode$DataXceiver: writeBlock blk_3207001413581596694 received exception java.io.IOException: Could not read from stream"
+      "081109 203932 307 INFO dfs.DataNode$DataXceiver: writeBlock blk_7648436334209344608 received exception java.io.IOException: Could not read from stream",
+      "081109 203948 305 INFO dfs.DataNode$DataXceiver: writeBlock blk_-5447417104355795463 received exception java.io.IOException: Could not read from stream",
+      "081109 204002 317 INFO dfs.DataNode$DataXceiver: writeBlock blk_-3048100091565287612 received exception java.io.IOException: Could not read from stream",
+      "081109 204014 325 INFO dfs.DataNode$DataXceiver: writeBlock blk_8591542202077771197 received exception java.io.IOException: Could not read from stream",
+      "081109 204031 329 INFO dfs.DataNode$DataXceiver: writeBlock blk_-8188730556182299562 received exception java.io.IOException: Could not read from stream"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.FSDataset: Deleting block <*> file <*>",
     "count": 1402047,
     "examples": [
-      "081110 005552 19 INFO dfs.FSDataset: Deleting block blk_-5820341108159367267 file /mnt/hadoop/dfs/data/current/subdir14/blk_-5820341108159367267",
-      "081110 005552 19 INFO dfs.FSDataset: Deleting block blk_-5820341108159367267 file /mnt/hadoop/dfs/data/current/subdir14/blk_-5820341108159367267",
-      "081110 005552 19 INFO dfs.FSDataset: Deleting block blk_-5820341108159367267 file /mnt/hadoop/dfs/data/current/subdir59/blk_-5820341108159367267",
-      "081110 005552 19 INFO dfs.FSDataset: Deleting block blk_-5820341108159367267 file /mnt/hadoop/dfs/data/current/subdir6/blk_-5820341108159367267",
-      "081110 005552 19 INFO dfs.FSDataset: Deleting block blk_-6470779133565377044 file /mnt/hadoop/dfs/data/current/subdir5/blk_-6470779133565377044"
+      "081109 204524 19 INFO dfs.FSDataset: Deleting block blk_-8213344449220111733 file /mnt/hadoop/dfs/data/current/subdir39/blk_-8213344449220111733",
+      "081109 204600 19 INFO dfs.FSDataset: Deleting block blk_-6899869435641005946 file /mnt/hadoop/dfs/data/current/subdir12/blk_-6899869435641005946",
+      "081109 204603 19 INFO dfs.FSDataset: Deleting block blk_-8191677345482862686 file /mnt/hadoop/dfs/data/current/subdir43/blk_-8191677345482862686",
+      "081109 204604 19 INFO dfs.FSDataset: Deleting block blk_-919439116365725304 file /mnt/hadoop/dfs/data/current/subdir30/blk_-919439116365725304",
+      "081109 204623 19 INFO dfs.FSDataset: Deleting block blk_3557914126063085372 file /mnt/hadoop/dfs/data/current/subdir8/blk_3557914126063085372"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block <*>",
     "count": 1464,
     "examples": [
-      "081110 001054 4732 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_8509955782298107904",
-      "081110 001054 4830 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_8509955782298107904",
-      "081110 001055 4829 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_8509955782298107904",
-      "081110 001747 4771 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_-4904400547590618819",
-      "081110 001747 4831 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_-4904400547590618819"
+      "081109 204530 526 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_-3842070622043972712",
+      "081109 204530 536 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_-3842070622043972712",
+      "081109 204530 543 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_-3842070622043972712",
+      "081109 204553 525 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_7621437832633701631",
+      "081109 204553 532 INFO dfs.DataNode$BlockReceiver: Receiving empty packet for block blk_7621437832633701631"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block <*> java.io.IOException: Connection reset by peer",
     "count": 75,
     "examples": [
-      "081110 014613 4545 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_7008279672769077211 java.io.IOException: Connection reset by peer",
-      "081110 020027 5498 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_8085135783040518166 java.io.IOException: Connection reset by peer",
-      "081110 020027 6009 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_8085135783040518166 java.io.IOException: Connection reset by peer",
-      "081110 102301 8462 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_5678483308337211471 java.io.IOException: Connection reset by peer",
-      "081110 104822 7266 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_8516616325149469651 java.io.IOException: Connection reset by peer"
+      "081109 204731 148 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-3102267849859399193 java.io.IOException: Connection reset by peer",
+      "081109 205148 590 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_4241467193520768333 java.io.IOException: Connection reset by peer",
+      "081109 205148 639 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_4241467193520768333 java.io.IOException: Connection reset by peer",
+      "081109 205627 784 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_1528078116812077719 java.io.IOException: Connection reset by peer",
+      "081109 210750 1075 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_3858821904894294369 java.io.IOException: Connection reset by peer"
     ]
   },
   {
     "template": "<*> <*> <*> INFO <*> <*> <*> <*> <*> java.io.IOException: Connection reset by peer",
     "count": 86,
     "examples": [
-      "081110 014448 4446 INFO dfs.DataNode$PacketResponder: PacketResponder blk_7008279672769077211 1 Exception java.io.IOException: Connection reset by peer",
-      "081110 014613 4545 INFO dfs.DataNode$DataXceiver: writeBlock blk_7008279672769077211 received exception java.io.IOException: Connection reset by peer",
-      "081110 020027 5498 INFO dfs.DataNode$DataXceiver: writeBlock blk_8085135783040518166 received exception java.io.IOException: Connection reset by peer",
-      "081110 020027 6009 INFO dfs.DataNode$DataXceiver: writeBlock blk_8085135783040518166 received exception java.io.IOException: Connection reset by peer",
-      "081110 102301 8462 INFO dfs.DataNode$DataXceiver: writeBlock blk_5678483308337211471 received exception java.io.IOException: Connection reset by peer"
+      "081109 204731 148 INFO dfs.DataNode$DataXceiver: writeBlock blk_-3102267849859399193 received exception java.io.IOException: Connection reset by peer",
+      "081109 205148 639 INFO dfs.DataNode$DataXceiver: writeBlock blk_4241467193520768333 received exception java.io.IOException: Connection reset by peer",
+      "081109 205149 590 INFO dfs.DataNode$DataXceiver: writeBlock blk_4241467193520768333 received exception java.io.IOException: Connection reset by peer",
+      "081109 205627 784 INFO dfs.DataNode$DataXceiver: writeBlock blk_1528078116812077719 received exception java.io.IOException: Connection reset by peer",
+      "081109 210750 1075 INFO dfs.DataNode$DataXceiver: writeBlock blk_3858821904894294369 received exception java.io.IOException: Connection reset by peer"
     ]
   },
   {
     "template": "<*> <*> <*> INFO <*> <*> <*> <*> <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for <*> ch : java.nio.channels.SocketChannel[connected <*> <*>",
     "count": 37,
     "examples": [
+      "081109 205106 640 INFO dfs.DataNode$PacketResponder: PacketResponder blk_4241467193520768333 2 Exception java.net.SocketTimeoutException: 120000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/10.251.107.242:58971 remote=/10.251.123.33:50010]",
+      "081109 210740 1238 INFO dfs.DataNode$PacketResponder: PacketResponder blk_3858821904894294369 2 Exception java.net.SocketTimeoutException: 120000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/10.250.13.188:58401 remote=/10.251.39.160:50010]",
+      "081109 234737 4186 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-4567777441263358151 2 Exception java.net.SocketTimeoutException: 120000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/10.251.199.225:50760 remote=/10.251.107.227:50010]",
       "081110 014352 5769 INFO dfs.DataNode$DataXceiver: writeBlock blk_7008279672769077211 received exception java.net.SocketTimeoutException: 490000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/10.251.42.191:43873 remote=/10.251.123.33:50010]",
-      "081110 015959 6219 INFO dfs.DataNode$PacketResponder: PacketResponder blk_8085135783040518166 2 Exception java.net.SocketTimeoutException: 120000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/10.250.5.237:46933 remote=/10.251.107.50:50010]",
-      "081110 211038 14481 INFO dfs.DataNode$DataXceiver: writeBlock blk_-516029862489211143 received exception java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/10.251.197.161:44245 remote=/10.251.123.33:50010]",
-      "081110 211050 14697 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-4250706752040073149 2 Exception java.net.SocketTimeoutException: 120000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/10.251.75.79:55552 remote=/10.251.123.33:50010]",
-      "081110 211102 14504 INFO dfs.DataNode$DataXceiver: writeBlock blk_844104329351281298 received exception java.net.SocketTimeoutException: 60000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/10.251.199.19:49703 remote=/10.251.123.33:50010]"
+      "081110 015959 6219 INFO dfs.DataNode$PacketResponder: PacketResponder blk_8085135783040518166 2 Exception java.net.SocketTimeoutException: 120000 millis timeout while waiting for channel to be ready for read. ch : java.nio.channels.SocketChannel[connected local=/10.250.5.237:46933 remote=/10.251.107.50:50010]"
     ]
   },
   {
     "template": "<*> <*> <*> INFO <*> <*> <*> <*> <*> java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected <*> <*> <*> millis timeout left.",
     "count": 40,
     "examples": [
-      "081110 014352 5770 INFO dfs.DataNode$PacketResponder: PacketResponder blk_7008279672769077211 2 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.42.191:43873 remote=/10.251.123.33:50010]. 115663 millis timeout left.",
-      "081110 014501 5573 INFO dfs.DataNode$DataXceiver: writeBlock blk_7008279672769077211 received exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.31.180:50010 remote=/10.251.123.33:33680]. 0 millis timeout left.",
-      "081110 014613 4572 INFO dfs.DataNode$PacketResponder: PacketResponder blk_7008279672769077211 1 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.123.33:55677 remote=/10.251.31.180:50010]. 53163 millis timeout left.",
-      "081110 020026 6218 INFO dfs.DataNode$DataXceiver: writeBlock blk_8085135783040518166 received exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.250.5.237:46933 remote=/10.251.107.50:50010]. 489984 millis timeout left.",
-      "081110 102301 8463 INFO dfs.DataNode$PacketResponder: PacketResponder blk_5678483308337211471 2 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.107.227:47045 remote=/10.251.38.214:50010]. 90646 millis timeout left."
+      "081109 205148 591 INFO dfs.DataNode$PacketResponder: PacketResponder blk_4241467193520768333 1 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.123.33:39066 remote=/10.250.7.32:50010]. 59942 millis timeout left.",
+      "081109 210750 1076 INFO dfs.DataNode$PacketResponder: PacketResponder blk_3858821904894294369 1 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.39.160:57395 remote=/10.251.214.175:50010]. 59728 millis timeout left.",
+      "081109 210750 1237 INFO dfs.DataNode$DataXceiver: writeBlock blk_3858821904894294369 received exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.250.13.188:58401 remote=/10.251.39.160:50010]. 489996 millis timeout left.",
+      "081109 234826 4185 INFO dfs.DataNode$DataXceiver: writeBlock blk_-4567777441263358151 received exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.199.225:50760 remote=/10.251.107.227:50010]. 489959 millis timeout left.",
+      "081110 014352 5770 INFO dfs.DataNode$PacketResponder: PacketResponder blk_7008279672769077211 2 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.42.191:43873 remote=/10.251.123.33:50010]. 115663 millis timeout left."
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block <*> java.io.EOFException",
     "count": 48,
     "examples": [
+      "081109 205149 629 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_4241467193520768333 java.io.EOFException",
+      "081109 210751 1189 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_3858821904894294369 java.io.EOFException",
+      "081109 234826 4101 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-4567777441263358151 java.io.EOFException",
       "081110 014613 5794 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_7008279672769077211 java.io.EOFException",
-      "081110 102301 8561 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_5678483308337211471 java.io.EOFException",
-      "081110 102301 8614 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_5678483308337211471 java.io.EOFException",
-      "081110 211155 11401 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_9099447004863711723 java.io.EOFException",
-      "081110 211155 11403 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-516029862489211143 java.io.EOFException"
+      "081110 102301 8561 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_5678483308337211471 java.io.EOFException"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$DataXceiver: writeBlock <*> received exception java.io.EOFException",
     "count": 47,
     "examples": [
+      "081109 205149 629 INFO dfs.DataNode$DataXceiver: writeBlock blk_4241467193520768333 received exception java.io.EOFException",
+      "081109 210751 1189 INFO dfs.DataNode$DataXceiver: writeBlock blk_3858821904894294369 received exception java.io.EOFException",
+      "081109 234826 4101 INFO dfs.DataNode$DataXceiver: writeBlock blk_-4567777441263358151 received exception java.io.EOFException",
       "081110 014614 5794 INFO dfs.DataNode$DataXceiver: writeBlock blk_7008279672769077211 received exception java.io.EOFException",
-      "081110 102301 8561 INFO dfs.DataNode$DataXceiver: writeBlock blk_5678483308337211471 received exception java.io.EOFException",
-      "081110 102301 8614 INFO dfs.DataNode$DataXceiver: writeBlock blk_5678483308337211471 received exception java.io.EOFException",
-      "081110 211155 11401 INFO dfs.DataNode$DataXceiver: writeBlock blk_9099447004863711723 received exception java.io.EOFException",
-      "081110 211155 11403 INFO dfs.DataNode$DataXceiver: writeBlock blk_-516029862489211143 received exception java.io.EOFException"
+      "081110 102301 8561 INFO dfs.DataNode$DataXceiver: writeBlock blk_5678483308337211471 received exception java.io.EOFException"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$BlockReceiver: Changing block file offset of block <*> from 0 to <*> meta file offset to <*>",
     "count": 65,
     "examples": [
-      "081110 014503 5772 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_7008279672769077211 from 0 to 13828096 meta file offset to 108039",
-      "081110 020027 6051 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_8085135783040518166 from 0 to 1114112 meta file offset to 8711",
-      "081110 020027 6254 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_8085135783040518166 from 0 to 1114112 meta file offset to 8711",
-      "081110 104822 7324 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_8516616325149469651 from 0 to 48693248 meta file offset to 380423",
-      "081110 104822 9300 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_8516616325149469651 from 0 to 48693248 meta file offset to 380423"
+      "081109 205149 750 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_4241467193520768333 from 0 to 30867456 meta file offset to 241159",
+      "081109 205149 751 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_4241467193520768333 from 0 to 30867456 meta file offset to 241159",
+      "081109 210751 1355 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_3858821904894294369 from 0 to 23724032 meta file offset to 185351",
+      "081109 210751 1389 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_3858821904894294369 from 0 to 23724032 meta file offset to 185351",
+      "081109 234826 4242 INFO dfs.DataNode$BlockReceiver: Changing block file offset of block blk_-4567777441263358151 from 0 to 53870592 meta file offset to 420871"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$BlockReceiver: <*> writing block <*> to mirror <*>",
     "count": 34,
     "examples": [
+      "081109 210750 1237 INFO dfs.DataNode$BlockReceiver: 10.250.13.188:50010:Exception writing block blk_3858821904894294369 to mirror 10.251.39.160:50010",
+      "081109 234826 4185 INFO dfs.DataNode$BlockReceiver: 10.251.199.225:50010:Exception writing block blk_-4567777441263358151 to mirror 10.251.107.227:50010",
       "081110 014351 5769 INFO dfs.DataNode$BlockReceiver: 10.251.42.191:50010:Exception writing block blk_7008279672769077211 to mirror 10.251.123.33:50010",
       "081110 014605 4445 INFO dfs.DataNode$BlockReceiver: 10.251.123.33:50010:Exception writing block blk_7008279672769077211 to mirror 10.251.31.180:50010",
-      "081110 020026 6218 INFO dfs.DataNode$BlockReceiver: 10.250.5.237:50010:Exception writing block blk_8085135783040518166 to mirror 10.251.107.50:50010",
-      "081110 211158 11374 INFO dfs.DataNode$BlockReceiver: 10.251.123.33:50010:Exception writing block blk_-4250706752040073149 to mirror 10.251.90.239:50010",
-      "081110 211158 14696 INFO dfs.DataNode$BlockReceiver: 10.251.75.79:50010:Exception writing block blk_-4250706752040073149 to mirror 10.251.123.33:50010"
+      "081110 020026 6218 INFO dfs.DataNode$BlockReceiver: 10.250.5.237:50010:Exception writing block blk_8085135783040518166 to mirror 10.251.107.50:50010"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block <*> java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected <*> <*> <*> millis timeout left.",
     "count": 16,
     "examples": [
+      "081109 210750 1237 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_3858821904894294369 java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.250.13.188:58401 remote=/10.251.39.160:50010]. 489996 millis timeout left.",
+      "081109 234826 4185 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-4567777441263358151 java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.199.225:50760 remote=/10.251.107.227:50010]. 489959 millis timeout left.",
       "081110 014459 5573 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_7008279672769077211 java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.31.180:50010 remote=/10.251.123.33:33680]. 0 millis timeout left.",
       "081110 020026 6218 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_8085135783040518166 java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.250.5.237:46933 remote=/10.251.107.50:50010]. 489984 millis timeout left.",
-      "081110 211158 11374 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-4250706752040073149 java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.123.33:48836 remote=/10.251.90.239:50010]. 484996 millis timeout left.",
-      "081111 033725 19008 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-4083716689384497698 java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.199.86:50010 remote=/10.251.30.85:60141]. 0 millis timeout left.",
-      "081111 070639 22575 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-6994808880344424033 java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.250.14.196:33153 remote=/10.251.107.50:50010]. 489728 millis timeout left."
+      "081110 211158 11374 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-4250706752040073149 java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[connected local=/10.251.123.33:48836 remote=/10.251.90.239:50010]. 484996 millis timeout left."
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$PacketResponder: PacketResponder <*> <*> Exception java.io.IOException: Broken pipe",
     "count": 6,
     "examples": [
+      "081109 210751 1190 INFO dfs.DataNode$PacketResponder: PacketResponder blk_3858821904894294369 0 Exception java.io.IOException: Broken pipe",
+      "081109 234826 3845 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-4567777441263358151 0 Exception java.io.IOException: Broken pipe",
+      "081110 020027 6010 INFO dfs.DataNode$PacketResponder: PacketResponder blk_8085135783040518166 0 Exception java.io.IOException: Broken pipe",
       "081110 104822 9310 INFO dfs.DataNode$PacketResponder: PacketResponder blk_8516616325149469651 2 Exception java.io.IOException: Broken pipe",
-      "081111 043955 19741 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-7052911997539087826 2 Exception java.io.IOException: Broken pipe",
-      "081111 070400 22648 INFO dfs.DataNode$PacketResponder: PacketResponder blk_9160796703302881264 2 Exception java.io.IOException: Broken pipe"
+      "081111 043955 19741 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-7052911997539087826 2 Exception java.io.IOException: Broken pipe"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$DataXceiver: writeBlock <*> received exception java.io.IOException: Block <*> is valid, and cannot be written to.",
     "count": 9,
     "examples": [
+      "081109 211204 1520 INFO dfs.DataNode$DataXceiver: writeBlock blk_992101295951175683 received exception java.io.IOException: Block blk_992101295951175683 is valid, and cannot be written to.",
+      "081109 211831 1800 INFO dfs.DataNode$DataXceiver: writeBlock blk_5862064168004546076 received exception java.io.IOException: Block blk_5862064168004546076 is valid, and cannot be written to.",
       "081110 012427 5473 INFO dfs.DataNode$DataXceiver: writeBlock blk_-2942077810471468030 received exception java.io.IOException: Block blk_-2942077810471468030 is valid, and cannot be written to.",
       "081110 104106 9149 INFO dfs.DataNode$DataXceiver: writeBlock blk_7162246307091465257 received exception java.io.IOException: Block blk_7162246307091465257 is valid, and cannot be written to.",
-      "081110 104334 9115 INFO dfs.DataNode$DataXceiver: writeBlock blk_-1292779714385604878 received exception java.io.IOException: Block blk_-1292779714385604878 is valid, and cannot be written to.",
-      "081110 104521 9151 INFO dfs.DataNode$DataXceiver: writeBlock blk_9122720022222323339 received exception java.io.IOException: Block blk_9122720022222323339 is valid, and cannot be written to.",
-      "081110 104552 9154 INFO dfs.DataNode$DataXceiver: writeBlock blk_3311461718180475343 received exception java.io.IOException: Block blk_3311461718180475343 is valid, and cannot be written to."
+      "081110 104334 9115 INFO dfs.DataNode$DataXceiver: writeBlock blk_-1292779714385604878 received exception java.io.IOException: Block blk_-1292779714385604878 is valid, and cannot be written to."
     ]
   },
   {
     "template": "<*> <*> <*> WARN dfs.DataNode$DataTransfer: <*> to transfer <*> to <*> got java.io.IOException: Connection reset by peer",
     "count": 9,
     "examples": [
+      "081109 211204 1543 WARN dfs.DataNode$DataTransfer: 10.251.194.147:50010:Failed to transfer blk_992101295951175683 to 10.251.214.112:50010 got java.io.IOException: Connection reset by peer",
+      "081109 211831 1797 WARN dfs.DataNode$DataTransfer: 10.251.39.242:50010:Failed to transfer blk_5862064168004546076 to 10.251.35.1:50010 got java.io.IOException: Connection reset by peer",
       "081110 012427 5397 WARN dfs.DataNode$DataTransfer: 10.251.74.227:50010:Failed to transfer blk_-2942077810471468030 to 10.251.38.214:50010 got java.io.IOException: Connection reset by peer",
       "081110 104106 8875 WARN dfs.DataNode$DataTransfer: 10.251.123.132:50010:Failed to transfer blk_7162246307091465257 to 10.251.90.64:50010 got java.io.IOException: Connection reset by peer",
-      "081110 104334 9146 WARN dfs.DataNode$DataTransfer: 10.251.105.189:50010:Failed to transfer blk_-1292779714385604878 to 10.251.91.32:50010 got java.io.IOException: Connection reset by peer",
-      "081110 104521 8931 WARN dfs.DataNode$DataTransfer: 10.251.203.179:50010:Failed to transfer blk_9122720022222323339 to 10.251.91.32:50010 got java.io.IOException: Connection reset by peer",
-      "081110 104552 9165 WARN dfs.DataNode$DataTransfer: 10.251.31.180:50010:Failed to transfer blk_3311461718180475343 to 10.251.91.32:50010 got java.io.IOException: Connection reset by peer"
+      "081110 104334 9146 WARN dfs.DataNode$DataTransfer: 10.251.105.189:50010:Failed to transfer blk_-1292779714385604878 to 10.251.91.32:50010 got java.io.IOException: Connection reset by peer"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: <*> is added to invalidSet of <*>",
     "count": 1396174,
     "examples": [
-      "081110 005550 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-5820341108159367267 is added to invalidSet of 10.250.11.85:50010",
-      "081110 005550 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-5820341108159367267 is added to invalidSet of 10.250.17.177:50010",
-      "081110 005550 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-5820341108159367267 is added to invalidSet of 10.250.6.223:50010",
-      "081110 005550 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-5820341108159367267 is added to invalidSet of 10.250.7.230:50010",
-      "081110 005550 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-5820341108159367267 is added to invalidSet of 10.251.109.209:50010"
+      "081109 213809 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-1608999687919862906 is added to invalidSet of 10.250.10.6:50010",
+      "081109 213809 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-1608999687919862906 is added to invalidSet of 10.250.14.224:50010",
+      "081109 213809 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-1608999687919862906 is added to invalidSet of 10.251.107.19:50010",
+      "081109 213809 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-1608999687919862906 is added to invalidSet of 10.251.111.209:50010",
+      "081109 213809 32 INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_-1608999687919862906 is added to invalidSet of 10.251.215.16:50010"
     ]
   },
   {
     "template": "<*> <*> <*> WARN dfs.FSDataset: Unexpected error trying to delete block <*> BlockInfo not found in volumeMap.",
     "count": 5545,
     "examples": [
-      "081110 010150 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_-2148703141779886222. BlockInfo not found in volumeMap.",
-      "081110 010150 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_-2287190522942390466. BlockInfo not found in volumeMap.",
-      "081110 010150 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_-3064804815983593157. BlockInfo not found in volumeMap.",
-      "081110 010150 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_3126660027015707905. BlockInfo not found in volumeMap.",
-      "081110 010150 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_5515350014856013879. BlockInfo not found in volumeMap."
+      "081109 213815 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_-1067131609371010449. BlockInfo not found in volumeMap.",
+      "081109 213815 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_4207153147078127808. BlockInfo not found in volumeMap.",
+      "081109 213816 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_-3174232733041654340. BlockInfo not found in volumeMap.",
+      "081109 213817 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_4589774882056031943. BlockInfo not found in volumeMap.",
+      "081109 213818 19 WARN dfs.FSDataset: Unexpected error trying to delete block blk_-4509092526264320136. BlockInfo not found in volumeMap."
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for <*> on <*> size <*> But it does not belong to any file.",
     "count": 1288,
     "examples": [
-      "081110 104628 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_-4109536386405623117 on 10.251.106.10:50010 size 3528482 But it does not belong to any file.",
-      "081110 104628 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_-4140063625333983620 on 10.251.106.10:50010 size 28479442 But it does not belong to any file.",
-      "081110 104628 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_-4155251049329083607 on 10.251.106.10:50010 size 67108864 But it does not belong to any file.",
-      "081110 104628 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_-4165341949680592974 on 10.251.106.10:50010 size 67108864 But it does not belong to any file.",
-      "081110 104628 27 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_-4176264516349599845 on 10.251.106.10:50010 size 67108864 But it does not belong to any file."
+      "081109 213823 29 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_5398314277015661293 on 10.251.199.86:50010 size 67108864 But it does not belong to any file.",
+      "081109 213823 33 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_5398314277015661293 on 10.251.122.79:50010 size 67108864 But it does not belong to any file.",
+      "081109 213841 28 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_5398314277015661293 on 10.251.123.33:50010 size 67108864 But it does not belong to any file.",
+      "081110 010146 33 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_74623038764341097 on 10.251.202.181:50010 size 67108864 But it does not belong to any file.",
+      "081110 010146 34 INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: addStoredBlock request received for blk_74623038764341097 on 10.251.201.204:50010 size 67108864 But it does not belong to any file."
     ]
   },
   {
     "template": "<*> <*> <*> WARN dfs.DataNode$DataXceiver: <*> exception while serving <*> to <*>",
     "count": 356207,
     "examples": [
-      "081110 020959 6303 WARN dfs.DataNode$DataXceiver: 10.251.127.191:50010:Got exception while serving blk_4977456674641201603 to /10.250.7.32:",
-      "081110 021024 6201 WARN dfs.DataNode$DataXceiver: 10.251.203.4:50010:Got exception while serving blk_1597506776427748553 to /10.250.10.144:",
-      "081110 021026 6220 WARN dfs.DataNode$DataXceiver: 10.251.126.227:50010:Got exception while serving blk_779901489381793676 to /10.251.122.65:",
-      "081110 021029 6145 WARN dfs.DataNode$DataXceiver: 10.251.214.225:50010:Got exception while serving blk_2572476595916878882 to /10.251.39.209:",
-      "081110 021031 6287 WARN dfs.DataNode$DataXceiver: 10.251.67.4:50010:Got exception while serving blk_-90120527305961238 to /10.250.13.240:"
+      "081109 213849 2471 WARN dfs.DataNode$DataXceiver: 10.251.71.68:50010:Got exception while serving blk_-8781759536960110370 to /10.250.17.225:",
+      "081109 213849 2511 WARN dfs.DataNode$DataXceiver: 10.251.27.63:50010:Got exception while serving blk_1732876454483854279 to /10.251.27.63:",
+      "081109 213850 2450 WARN dfs.DataNode$DataXceiver: 10.251.203.166:50010:Got exception while serving blk_-933600745359216493 to /10.251.91.229:",
+      "081109 213850 2460 WARN dfs.DataNode$DataXceiver: 10.251.107.227:50010:Got exception while serving blk_-1886154032861725764 to /10.250.11.100:",
+      "081109 213850 2464 WARN dfs.DataNode$DataXceiver: 10.250.15.198:50010:Got exception while serving blk_7732760914518898593 to /10.250.15.198:"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block <*> java.net.SocketTimeoutException: <*> millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected <*> <*>",
     "count": 5,
     "examples": [
+      "081110 014351 5769 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_7008279672769077211 java.net.SocketTimeoutException: 490000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/10.251.42.191:43873 remote=/10.251.123.33:50010]",
+      "081111 070526 22434 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_6224343649004202692 java.net.SocketTimeoutException: 490000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/10.251.127.243:44092 remote=/10.251.107.50:50010]",
+      "081111 070641 22586 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-6363674043695218814 java.net.SocketTimeoutException: 490000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/10.250.15.101:33683 remote=/10.251.107.50:50010]",
       "081111 071051 22800 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_584730932939516842 java.net.SocketTimeoutException: 485000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/10.250.19.227:55473 remote=/10.251.107.50:50010]",
       "081111 071159 22779 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_7169347067596634974 java.net.SocketTimeoutException: 490000 millis timeout while waiting for channel to be ready for write. ch : java.nio.channels.SocketChannel[connected local=/10.251.71.97:45976 remote=/10.251.107.50:50010]"
     ]
@@ -368,6 +374,7 @@
     "template": "<*> <*> <*> INFO dfs.FSDataset: Reopen Block <*>",
     "count": 5,
     "examples": [
+      "081110 014606 5794 INFO dfs.FSDataset: Reopen Block blk_7008279672769077211",
       "081111 043955 15685 INFO dfs.FSDataset: Reopen Block blk_-7052911997539087826",
       "081111 043955 19904 INFO dfs.FSDataset: Reopen Block blk_-7052911997539087826",
       "081111 071032 22899 INFO dfs.FSDataset: Reopen Block blk_8006271611835981128",
@@ -378,6 +385,7 @@
     "template": "081110 <*> 19 INFO dfs.FSNamesystem: BLOCK* Removing block <*> from neededReplications as it does not belong to any file.",
     "count": 4,
     "examples": [
+      "081110 104443 19 INFO dfs.FSNamesystem: BLOCK* Removing block blk_-3530301067936445915 from neededReplications as it does not belong to any file.",
       "081110 104455 19 INFO dfs.FSNamesystem: BLOCK* Removing block blk_3570750915105748881 from neededReplications as it does not belong to any file.",
       "081110 104455 19 INFO dfs.FSNamesystem: BLOCK* Removing block blk_-8590003046192319107 from neededReplications as it does not belong to any file.",
       "081110 211535 19 INFO dfs.FSNamesystem: BLOCK* Removing block blk_4817120834356969274 from neededReplications as it does not belong to any file."
@@ -387,28 +395,29 @@
     "template": "<*> <*> 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block <*>",
     "count": 47,
     "examples": [
-      "081111 050934 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_1302833133980493254",
-      "081111 050934 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_1504547689884792787",
-      "081111 050934 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_1606035298045716972",
-      "081111 050934 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_274401605260075764",
-      "081111 050934 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_3387295944426573478"
+      "081110 104936 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_-5057834626410636236",
+      "081110 212435 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_-2526833798441848968",
+      "081110 212435 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_-2610256770731596149",
+      "081110 212435 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_-6538891058531862642",
+      "081110 212435 16 WARN dfs.PendingReplicationBlocks$PendingReplicationMonitor: PendingReplicationMonitor timed out block blk_-6836377952319775628"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$DataXceiver: writeBlock <*> received exception java.io.IOException: <*> <*>",
     "count": 16,
     "examples": [
+      "081110 211158 11374 INFO dfs.DataNode$DataXceiver: writeBlock blk_-4250706752040073149 received exception java.io.IOException: Interrupted receiveBlock",
       "081111 033556 18835 INFO dfs.DataNode$DataXceiver: writeBlock blk_6189089042276997489 received exception java.io.IOException: Broken pipe",
       "081111 033608 18833 INFO dfs.DataNode$DataXceiver: writeBlock blk_5051010748021875388 received exception java.io.IOException: Broken pipe",
       "081111 070639 22924 INFO dfs.DataNode$DataXceiver: writeBlock blk_-6994808880344424033 received exception java.io.IOException: Interrupted receiveBlock",
-      "081111 070640 20570 INFO dfs.DataNode$DataXceiver: writeBlock blk_-6994808880344424033 received exception java.io.IOException: Broken pipe",
-      "081111 070703 22617 INFO dfs.DataNode$DataXceiver: writeBlock blk_7160764053931337311 received exception java.io.IOException: Interrupted receiveBlock"
+      "081111 070640 20570 INFO dfs.DataNode$DataXceiver: writeBlock blk_-6994808880344424033 received exception java.io.IOException: Broken pipe"
     ]
   },
   {
     "template": "<*> <*> <*> INFO dfs.DataNode$PacketResponder: PacketResponder <*> 1 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[closed]. <*> millis timeout left.",
     "count": 5,
     "examples": [
+      "081110 211158 11375 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-4250706752040073149 1 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[closed]. 59985 millis timeout left.",
       "081111 070858 20581 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-4723951162006187997 1 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[closed]. 59799 millis timeout left.",
       "081111 070949 20561 INFO dfs.DataNode$PacketResponder: PacketResponder blk_8895996987918469659 1 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[closed]. 59852 millis timeout left.",
       "081111 071603 20669 INFO dfs.DataNode$PacketResponder: PacketResponder blk_2832388045942608634 1 Exception java.io.InterruptedIOException: Interruped while waiting for IO on channel java.nio.channels.SocketChannel[closed]. 59990 millis timeout left.",
@@ -426,17 +435,18 @@
     "template": "081111 <*> <*> WARN dfs.DataBlockScanner: Adding an already existing block <*>",
     "count": 10,
     "examples": [
+      "081111 043936 19784 WARN dfs.DataBlockScanner: Adding an already existing block blk_-2074647664485597823",
+      "081111 043936 20189 WARN dfs.DataBlockScanner: Adding an already existing block blk_-2074647664485597823",
       "081111 043955 19904 WARN dfs.DataBlockScanner: Adding an already existing block blk_-7052911997539087826",
       "081111 043956 15685 WARN dfs.DataBlockScanner: Adding an already existing block blk_-7052911997539087826",
-      "081111 070155 22669 WARN dfs.DataBlockScanner: Adding an already existing block blk_5697572983288390847",
-      "081111 070155 22810 WARN dfs.DataBlockScanner: Adding an already existing block blk_5697572983288390847",
-      "081111 073825 23413 WARN dfs.DataBlockScanner: Adding an already existing block blk_9176263204797010146"
+      "081111 070155 22669 WARN dfs.DataBlockScanner: Adding an already existing block blk_5697572983288390847"
     ]
   },
   {
     "template": "081111 <*> <*> INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block <*> java.io.IOException: Broken pipe",
     "count": 3,
     "examples": [
+      "081111 070640 20570 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_-6994808880344424033 java.io.IOException: Broken pipe",
       "081111 070711 20540 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_7160764053931337311 java.io.IOException: Broken pipe",
       "081111 071052 22844 INFO dfs.DataNode$BlockReceiver: Exception in receiveBlock for block blk_584730932939516842 java.io.IOException: Broken pipe"
     ]
@@ -445,6 +455,7 @@
     "template": "081111 <*> <*> INFO dfs.DataNode$PacketResponder: PacketResponder <*> 1 Exception java.io.IOException: The stream is closed",
     "count": 2,
     "examples": [
+      "081111 071032 20535 INFO dfs.DataNode$PacketResponder: PacketResponder blk_8006271611835981128 1 Exception java.io.IOException: The stream is closed",
       "081111 071238 20597 INFO dfs.DataNode$PacketResponder: PacketResponder blk_-2448583810301041956 1 Exception java.io.IOException: The stream is closed"
     ]
   }

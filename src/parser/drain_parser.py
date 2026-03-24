@@ -18,10 +18,12 @@ class DrainParser:
     if config_path:
       cfg.load(config_path)
     self.miner = TemplateMiner(config=cfg)
-    
-    # For validation
-    self.template_to_lines: Dict[str, List[str]] = defaultdict(list)
-    self.line_template_ids: List[str] = []  
+
+    # cluster_id is stable throughout the online parsing process;
+    # template strings evolve as tokens are replaced with <*>, so we
+    # key example lines by ID to avoid orphaned entries.
+    self.cluster_id_to_lines: Dict[int, List[str]] = defaultdict(list)
+    self.line_template_ids: List[str] = []
 
 
   def fit_file(self, log_path: str, max_lines: int | None = None) -> None:
@@ -36,15 +38,15 @@ class DrainParser:
 
         result = self.miner.add_log_message(line) # Process the log line through Drain3
         cluster_id = result.get("cluster_id")
-        template   = result.get("template_mined")
 
-        if cluster_id is None or template is None:
+        if cluster_id is None:
           print(f"[WARN] No cluster for line {i}: {line[:120]}...")
           continue
-        
-        # Store for validation
+
+        # Store for validation — keyed by stable cluster_id, not by the
+        # template string which may still evolve after this point.
         self.line_template_ids.append(cluster_id)
-        self.template_to_lines[template].append(line)
+        self.cluster_id_to_lines[cluster_id].append(line)
 
         # Early stopping
         if max_lines is not None and i >= max_lines:
@@ -53,17 +55,17 @@ class DrainParser:
 
         if i % 100000 == 0:
           print(f"[INFO] Processed {i} lines...")
-      
+
       print(f"[INFO] Parsed {len(self.line_template_ids)} log lines total.")
-      print(f"[INFO] Learned {len(self.template_to_lines)} distinct templates.")
-  
+      print(f"[INFO] Learned {len(self.miner.drain.id_to_cluster)} distinct templates (final).")
+
 
   def export_templates(self, out_path: str) -> None:
     """Export learned templates to a file."""
     records = []
     for cluster in self.miner.drain.id_to_cluster.values():
         tmpl = " ".join(cluster.log_template_tokens)
-        lines = self.template_to_lines.get(tmpl, [])
+        lines = self.cluster_id_to_lines.get(cluster.cluster_id, [])
         records.append({
             "template": tmpl,             # The template string learned by Drain3
             "count": cluster.size,        # authoritative count from Drain3
@@ -79,9 +81,16 @@ class DrainParser:
     print(f"[INFO] Exported {len(records)} templates → {out_path}")
 
 
+  def _final_clusters(self) -> List[tuple]:
+    """Return list of (template_str, size) from Drain's authoritative cluster store."""
+    return [
+      (" ".join(c.log_template_tokens), c.size)
+      for c in self.miner.drain.id_to_cluster.values()
+    ]
+
+
   def _print_template_support_distribution(self) -> List[int]:
-    support_counts = [len(v) for v in self.template_to_lines.values()]
-    support_counts.sort()
+    support_counts = sorted(size for _, size in self._final_clusters())
     min_sup = support_counts[0]
     max_sup = support_counts[-1]
     avg_sup = sum(support_counts) / len(support_counts)
@@ -106,11 +115,11 @@ class DrainParser:
 
   def _validate_overly_generic_templates(self) -> None:
     too_generic = []
-    for tmpl, lines in self.template_to_lines.items():
+    for tmpl, size in self._final_clusters():
       num_tokens = len(tmpl.split())
       num_wild = tmpl.count("<*>")
       if num_tokens > 0 and num_wild / num_tokens > 0.7:
-        too_generic.append((tmpl, len(lines)))
+        too_generic.append((tmpl, size))
 
     if too_generic:
       print(
@@ -127,8 +136,8 @@ class DrainParser:
 
   def _validate_overly_specific_templates(self) -> None:
     too_specific = []
-    for tmpl, lines in self.template_to_lines.items():
-      if len(lines) == 1 and "<*>" not in tmpl:
+    for tmpl, size in self._final_clusters():
+      if size == 1 and "<*>" not in tmpl:
         too_specific.append(tmpl)
 
     if too_specific:
@@ -149,12 +158,12 @@ class DrainParser:
     print("\n[INFO] Running template validation...")
 
     total_lines = len(self.line_template_ids)
-    n_templates = len(self.template_to_lines)
+    n_templates = len(self.miner.drain.id_to_cluster)
 
     if total_lines == 0:
         print("[ERROR] No lines were parsed. Check your log path / format.")
         return
-    
+
     print(f"[INFO] Total lines parsed   : {total_lines}")
     print(f"[INFO] Distinct templates   : {n_templates}")
 

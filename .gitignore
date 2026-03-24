@@ -27,3 +27,5 @@ gha-creds-*.json
 
 # OS
 .DS_Store
+
+.env

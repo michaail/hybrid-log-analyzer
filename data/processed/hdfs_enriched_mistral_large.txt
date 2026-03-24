@@ -1,0 +1,190 @@
+Disabling PyTorch because PyTorch >= 2.4 is required but found 2.2.2
+PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[INFO] Loaded Azure OpenAI config: endpoint=https://ai-galeo097435ai450651996964.services.ai.azure.com/models, model=Mistral-Large-3, api_version=2024-10-21
+Initializing LLM
+Here’s the enriched log template with the requested additional information:
+
+---
+
+### **Enriched Log Template**
+**Original Template:**
+`<*> <*> <*> INFO dfs.DataNode$DataXceiver: Receiving block <*> src: <*> dest: <*>`
+
+#### **1. System Component:**
+- **Component:** `DataNode` (specifically, the `DataXceiver` thread/process)
+  - **Role in HDFS:** The `DataNode` is responsible for storing and managing the actual data blocks on the local filesystem. The `DataXceiver` is a subcomponent that handles network communication for block operations (e.g., receiving, sending, or replicating blocks).
+
+#### **2. Log Level:**
+- **Level:** `INFO`
+  - **Implication:** This is an informational log, typically indicating a routine operation rather than an error or warning. However, in anomaly detection, even `INFO` logs can be critical if they deviate from expected sequences (e.g., a block is received but never written).
+
+#### **3. Description of Likely Meaning/Purpose:**
+- **Purpose:** This log records the initiation of a block transfer to the `DataNode`. Specifically:
+  - A remote client or another `DataNode` (e.g., during replication) is sending a block to this `DataNode`.
+  - The `src` (source) and `dest` (destination) fields likely denote the network endpoints (IP/port) involved in the transfer.
+  - This is part of the **block write lifecycle** (e.g., during file uploads, replication, or recovery).
+- **Context in Anomaly Detection:**
+  - **Normal Operation:** This log should appear as part of a sequence where the block is subsequently written to disk (e.g., followed by logs like `blockReceived` or `blockWritten`).
+  - **Anomaly Indicators:**
+    - If this log appears but is **not followed** by a successful write (e.g., missing `blockWritten` or `blockReceived` logs), it may indicate a **failed transfer** (e.g., network interruption, disk error, or client crash).
+    - If the `src` or `dest` fields show unexpected values (e.g., unauthorized IPs), it could signal a **security anomaly** (e.g., rogue node).
+    - If the same block is received multiple times without completion, it may suggest **replication storms** or **stuck transfers**.
+
+#### **4. Relevant Metadata (Inferred from Template):**
+| **Field**               | **Description**                                                                 | **Anomaly Relevance**                                                                 |
+|-------------------------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `<*>` (Timestamp)       | Log generation time (often omitted in templates but present in raw logs).     | Critical for sequence analysis (e.g., delays between `Receiving` and `Written`).     |
+| `dfs.DataNode$DataXceiver` | Thread/process handling the block transfer.                                  | Multiple concurrent transfers to the same `DataNode` may indicate resource contention. |
+| `Receiving block <*>`   | The block ID being transferred (e.g., `blk_123456789`).                       | Unique identifier for tracking the block’s lifecycle across logs.                    |
+| `src: <*>`              | Source IP/port of the sender (e.g., client or another `DataNode`).            | Unexpected `src` may indicate misconfigured replication or unauthorized access.      |
+| `dest: <*>`             | Destination IP/port on this `DataNode`.                                       | Mismatched `dest` could suggest network misrouting.                                  |
+
+#### **5. Anomaly Detection Semantics:**
+- **Expected Sequence:** This log should be part of a **block write pipeline**:
+  1. `Receiving block <block_id>` (this log)
+  2. `blockReceived` (acknowledgment of receipt)
+  3. `blockWritten` (successful disk write)
+  4. `blockReport` (update to `NameNode` about the new block)
+- **Failure Modes to Monitor:**
+  - **Missing Subsequent Logs:** If `blockWritten` is absent, the transfer failed (e.g., disk full, network timeout).
+  - **Duplicate Receipts:** The same block is received multiple times (e.g., due to retries or replication issues).
+  - **Orphaned Blocks:** Blocks received but never reported to the `NameNode` (e.g., `DataNode` crash before `blockReport`).
+  - **Unusual `src`:** Receipt from an unexpected `DataNode` (e.g., not in the cluster’s rack topology).
+
+#### **6. Example Anomalous Scenarios:**
+1. **Network Partition:**
+   - Log: `Receiving block blk_123 src: 10.0.0.2:50010 dest: 10.0.0.3:50020`
+   - Anomaly: No `blockWritten` log follows; `DataNode` at `10.0.0.3` may be unreachable.
+2. **Disk Failure:**
+   - Log: `Receiving block blk_456 src: 10.0.0.4:50010 dest: 10.0.0.5:50020`
+   - Anomaly: `blockWritten` fails with `IOException`; disk on `10.0.0.5` may be corrupted.
+3. **Replication Storm:**
+   - Log: Multiple `Receiving block blk_789` logs from different `src` IPs for the same block.
+   - Anomaly: Over-replication due to `NameNode` misconfiguration or network delays.
+
+---
+
+### **Summary for Anomaly Detection:**
+This log is a **critical checkpoint** in the block transfer lifecycle. Anomalies are detected by:
+1. **Sequence Violations:** Missing or out-of-order logs (e.g., `Receiving` without `blockWritten`).
+2. **Metadata Anomalies:** Unexpected `src`/`dest` values or duplicate block IDs.
+3. **Temporal Anomalies:** Unusually long delays between `Receiving` and subsequent operations.
+
+**Key Fields to Monitor:** `block_id`, `src`, `dest`, and the presence/absence of follow-up logs.
+
+
+
+
+
+
+
+Here’s the enriched log template with the requested additional information, contextualized for HDFS anomaly detection:
+
+---
+
+### **Enriched Log Template**
+**Original Template:**
+`<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: <*> <*>`
+
+---
+
+#### **1. System Component**
+- **Component:** `NameNode` (specifically, the `FSNamesystem` module)
+  - *Rationale:* The log originates from `dfs.FSNamesystem`, which is the core metadata management component of the HDFS NameNode. It handles block operations (e.g., allocation, replication, deletion) and maintains the file system namespace.
+
+---
+
+#### **2. Log Level**
+- **Level:** `INFO`
+  - *Rationale:* Explicitly stated in the template (`INFO`). This indicates a routine operational event, not an error or warning.
+
+---
+
+#### **3. Description of Meaning/Purpose**
+- **Purpose:**
+  This log records the **allocation of a new data block** in HDFS. The NameNode assigns a unique block ID and selects target DataNodes to store replicas of the block (though the specific DataNodes are masked by `<*>` in the template).
+  - **Context in Block Lifecycle:**
+    This is the **first step** in the block’s lifecycle (allocation → writing → replication → completion/deletion). It occurs when:
+    - A client initiates a file write operation (e.g., `hdfs dfs -put`).
+    - The NameNode reserves space for the block and prepares to track its metadata.
+  - **Anomaly Detection Relevance:**
+    - **Normal:** Expected in sequences where a block is subsequently written and replicated successfully.
+    - **Anomalous:** If this log appears **without** subsequent logs for block writing (`BlockReport`, `addStoredBlock`) or replication, it may indicate:
+      - A **failed write operation** (e.g., client crash, network timeout).
+      - A **zombie block** (allocated but never used).
+      - **Metadata corruption** (NameNode lost track of the block).
+
+---
+
+#### **4. Inferred Metadata**
+| **Field**               | **Inferred Value**                                                                 | **Notes**                                                                 |
+|-------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| **Block ID**            | Masked by `<*>` (e.g., `blk_123456789`)                                            | Unique identifier for the block; critical for tracking its lifecycle.     |
+| **Timestamp**           | Masked by `<*>` (e.g., `2023-10-01 12:34:56,789`)                                  | Used to correlate with other logs in the block’s sequence.                |
+| **Client/Thread ID**    | Masked by `<*>` (e.g., `DFSClient_NONMAPREDUCE_123456789_1`)                       | Identifies the client or process requesting the block allocation.         |
+| **File Path**           | Not directly visible (but linked to the block via NameNode metadata)               | The block belongs to a file (e.g., `/user/data/large_file.dat`).          |
+| **Replication Factor**  | Implicit (default: 3 in HDFS)                                                      | The number of replicas to be created (not logged here but enforced later).|
+| **DataNodes**           | Masked by `<*>` (e.g., `DatanodeRegistration(192.168.1.10:50010)`)                 | Target DataNodes for storing replicas (selected by NameNode).             |
+
+---
+
+#### **5. Anomaly Detection Semantics**
+- **Key Observations for Anomaly Detection:**
+  1. **Isolated Allocation:**
+     - If this log appears **without** subsequent logs for:
+       - `BlockReport` (DataNode reporting the block).
+       - `addStoredBlock` (DataNode confirming block storage).
+       - `ReceivedBlockReport` (NameNode acknowledging the block).
+     → **Potential anomaly:** The block was allocated but never written or stored (e.g., client failure, network partition).
+  2. **Duplicate Allocations:**
+     - Multiple `allocateBlock` logs for the **same block ID** may indicate:
+       - **NameNode metadata corruption** (e.g., race condition in block assignment).
+       - **Client retries** (e.g., due to timeouts).
+  3. **Orphaned Blocks:**
+     - If the block is allocated but the file is **never closed** (no `completeFile` log), it may become an orphaned block, wasting storage.
+  4. **Replication Issues:**
+     - If the block is allocated but **under-replicated** (e.g., due to DataNode failures), later logs may show `UnderReplicatedBlocks` warnings.
+
+- **Labeling Rules (Benchmark Context):**
+  - **Normal:** This log is part of a sequence where the block is:
+    - Written to DataNodes (`BlockReport`).
+    - Replicated to the required count (`addStoredBlock`).
+    - Closed successfully (`completeFile`).
+  - **Anomalous:** This log is part of a sequence where:
+    - The block is allocated but **no further logs** appear (e.g., client crash).
+    - The block is **overwritten or deleted prematurely** (e.g., `deleteBlock` before completion).
+    - The block is **under-replicated** (e.g., `UnderReplicatedBlocks` logs follow).
+
+---
+
+#### **6. Example Log Sequences**
+**Normal Sequence:**
+```
+1. INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /file.dat blk_123456789_1001
+2. INFO dfs.DataNode: Receiving block blk_123456789_1001 src: /192.168.1.10:50010
+3. INFO dfs.FSNamesystem: BLOCK* addStoredBlock: blockMap updated: 192.168.1.10:50010 is added to blk_123456789_1001
+4. INFO dfs.FSNamesystem: BLOCK* NameSystem.completeFile: /file.dat is closed by DFSClient_NONMAPREDUCE_123456789_1
+```
+
+**Anomalous Sequence (Failed Write):**
+```
+1. INFO dfs.FSNamesystem: BLOCK* NameSystem.allocateBlock: /file.dat blk_123456789_1001
+2. WARN dfs.DataNode: IOException in receiveBlock for block blk_123456789_1001 java.io.IOException: Connection reset by peer
+3. ERROR dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: Redundant addStoredBlock request received for blk_123456789_1001 on 192.168.1.10:50010 size 0
+```
+→ **Anomaly:** Block allocated but write failed (no `completeFile` log).
+
+---
+
+#### **7. Related Log Templates to Monitor**
+To fully track the block lifecycle, correlate this log with:
+- **Block Writing:**
+  `<*> <*> <*> INFO dfs.DataNode: Receiving block <*> src: <*>`
+- **Block Storage Confirmation:**
+  `<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* addStoredBlock: blockMap updated: <*> is added to <*>`
+- **File Completion:**
+  `<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.completeFile: <*> is closed by <*>`
+- **Replication Issues:**
+  `<*> <*> <*> WARN dfs.FSNamesystem: UnderReplicatedBlocks: <*> has only <*> replicas`
+- **Deletion:**
+  `<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: blk_<*> is added to invalidSet`
