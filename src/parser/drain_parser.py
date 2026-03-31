@@ -1,9 +1,10 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from collections import defaultdict
 from pathlib import Path
 import json
 
 from drain3 import TemplateMiner
+from drain3.file_persistence import FilePersistence
 from drain3.template_miner_config import TemplateMinerConfig
 
 class DrainParser:
@@ -13,11 +14,19 @@ class DrainParser:
     - exporting learned templates
     - validating template quality heuristically
   """
-  def __init__(self, config_path: str | None = None):
+  def __init__(self, config_path: str | None = None, persistence_path: Optional[str] = None):
     cfg = TemplateMinerConfig()
     if config_path:
       cfg.load(config_path)
-    self.miner = TemplateMiner(config=cfg)
+
+    persistence = None
+    if persistence_path:
+      Path(persistence_path).parent.mkdir(parents=True, exist_ok=True)
+      persistence = FilePersistence(persistence_path)
+
+    self.miner = TemplateMiner(persistence_handler=persistence, config=cfg)
+    self._persistence_path = persistence_path
+    self._config_path = config_path
 
     # cluster_id is stable throughout the online parsing process;
     # template strings evolve as tokens are replaced with <*>, so we
@@ -60,6 +69,75 @@ class DrainParser:
       print(f"[INFO] Learned {len(self.miner.drain.id_to_cluster)} distinct templates (final).")
 
 
+  def annotate_file(self, log_path: str, max_lines: int | None = None):
+    """Second pass over the log file using the final learned templates.
+
+    Returns a pandas DataFrame with one row per log line:
+      - date, time, thread   : raw header fields
+      - timestamp            : datetime parsed from date+time
+      - raw                  : full original log line
+      - cluster_id           : stable Drain cluster id
+      - template             : final (fully generalised) template string
+      - parameters           : list of values extracted for each <*> token
+      - block_id             : first blk_XXX value found in the line (or None)
+    """
+    import re
+    import pandas as pd
+    from datetime import datetime
+
+    BLOCK_RE = re.compile(r"blk_-?\d+")
+
+    rows = []
+    log_path = Path(log_path)
+
+    with log_path.open("r", errors="replace") as f:
+      for i, raw in enumerate(f, start=1):
+        line = raw.rstrip("\n")
+        if not line:
+          continue
+
+        # Match against final templates (does not mutate clusters)
+        match = self.miner.match(line)
+        if match is None:
+          continue
+
+        template_tokens = match.get_template()  # list[str]
+        template_str    = " ".join(template_tokens)
+        params          = self.miner.get_parameter_list(template_tokens, line)
+
+        parts = line.split(None, 3)  # date time thread rest
+        date_s, time_s, thread_s = (parts + ["", "", ""])[:3]
+
+        try:
+          ts = datetime.strptime(f"{date_s} {time_s}", "%d%m%y %H%M%S")
+        except ValueError:
+          ts = None
+
+        block_match = BLOCK_RE.search(line)
+        block_id    = block_match.group(0) if block_match else None
+
+        rows.append({
+          "date":       date_s,
+          "time":       time_s,
+          "thread":     thread_s,
+          "timestamp":  ts,
+          "raw":        line,
+          "cluster_id": match.cluster_id,
+          "template":   template_str,
+          "parameters": list(params) if params else [],
+          "block_id":   block_id,
+        })
+
+        if max_lines is not None and i >= max_lines:
+          break
+
+        if i % 500_000 == 0:
+          print(f"[INFO] Annotated {i} lines...")
+
+    print(f"[INFO] Annotated {len(rows)} lines.")
+    return pd.DataFrame(rows)
+
+
   def export_templates(self, out_path: str) -> None:
     """Export learned templates to a file."""
     records = []
@@ -67,9 +145,10 @@ class DrainParser:
         tmpl = " ".join(cluster.log_template_tokens)
         lines = self.cluster_id_to_lines.get(cluster.cluster_id, [])
         records.append({
-            "template": tmpl,             # The template string learned by Drain3
-            "count": cluster.size,        # authoritative count from Drain3
-            "examples": lines[:5]         # Include up to 5 example lines for context
+            "cluster_id": cluster.cluster_id, # Stable ID for this template cluster
+            "template": tmpl,                 # The template string learned by Drain3
+            "count": cluster.size,            # authoritative count from Drain3
+            "examples": lines[:5]             # Include up to 5 example lines for context
         })
 
     out_path = Path(out_path)
@@ -80,6 +159,47 @@ class DrainParser:
 
     print(f"[INFO] Exported {len(records)} templates → {out_path}")
 
+
+  def save(self, path: Optional[str] = None) -> None:
+    """Manually trigger a drain3 snapshot save.
+
+    If *path* is given and differs from the current persistence path, a new
+    FilePersistence pointing at that path is used for this one-off save.
+    Otherwise the persistence handler configured at construction time is used.
+    """
+    target_path = path or self._persistence_path
+    if target_path is None:
+      raise ValueError("No persistence_path configured and no path argument given.")
+
+    out = Path(target_path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+
+    if target_path != self._persistence_path:
+      # One-off save to a different file — swap handler temporarily
+      original = self.miner.persistence_handler
+      self.miner.persistence_handler = FilePersistence(target_path)
+      self.miner.save_state("manual_save")
+      self.miner.persistence_handler = original
+    else:
+      self.miner.save_state("manual_save")
+
+    print(f"[INFO] DrainParser snapshot saved → {out}  ({out.stat().st_size / 1_048_576:.2f} MB)")
+
+  @classmethod
+  def load(cls, path: str, config_path: Optional[str] = None) -> "DrainParser":
+    """Restore a previously saved DrainParser from a drain3 FilePersistence snapshot.
+
+    Passing the same *config_path* as during training ensures masking rules and
+    Drain hyperparameters are identical — only cluster state is loaded from the
+    snapshot file (as per drain3 design).
+    """
+    if not Path(path).exists():
+      raise FileNotFoundError(f"Snapshot file not found: {path}")
+    # Constructing with FilePersistence triggers load_state() automatically
+    obj = cls(config_path=config_path, persistence_path=path)
+    n_clusters = len(obj.miner.drain.id_to_cluster)
+    print(f"[INFO] DrainParser loaded ← {path}  ({n_clusters} templates)")
+    return obj
 
   def _final_clusters(self) -> List[tuple]:
     """Return list of (template_str, size) from Drain's authoritative cluster store."""

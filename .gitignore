@@ -29,3 +29,6 @@ gha-creds-*.json
 .DS_Store
 
 .env
+data/neo4j/
+
+*.parquet
