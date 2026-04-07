@@ -14,6 +14,24 @@ class DrainParser:
     - exporting learned templates
     - validating template quality heuristically
   """
+
+  # Number of leading tokens to strip before passing to Drain.
+  # HDFS format: <DDMMYY> <HHMMSS> <thread_id> <LEVEL> <component>: <message>
+  # Stripping the first 3 (date, time, thread) removes always-variable header
+  # fields; LEVEL and component are kept because they help Drain cluster lines.
+  _HDFS_HEADER_TOKENS = 3
+
+  @staticmethod
+  def _preprocess_line(line: str, strip_tokens: int = 3) -> str:
+    """Strip the first `strip_tokens` whitespace-separated tokens from *line*.
+
+    This removes the variable HDFS header (date DDMMYY, time HHMMSS, thread id)
+    so Drain only sees the stable LOG-LEVEL + COMPONENT + MESSAGE portion.
+    Returns the original line unchanged if it has fewer tokens than requested.
+    """
+    parts = line.split(None, strip_tokens)
+    return parts[strip_tokens] if len(parts) > strip_tokens else line
+
   def __init__(self, config_path: str | None = None, persistence_path: Optional[str] = None):
     cfg = TemplateMinerConfig()
     if config_path:
@@ -45,7 +63,8 @@ class DrainParser:
         if not line:
           continue
 
-        result = self.miner.add_log_message(line) # Process the log line through Drain3
+        content = self._preprocess_line(line, self._HDFS_HEADER_TOKENS)
+        result = self.miner.add_log_message(content) # Process the log line through Drain3
         cluster_id = result.get("cluster_id")
 
         if cluster_id is None:
@@ -96,14 +115,17 @@ class DrainParser:
         if not line:
           continue
 
+        # Strip the same HDFS header tokens that were removed during fit
+        content = self._preprocess_line(line, self._HDFS_HEADER_TOKENS)
+
         # Match against final templates (does not mutate clusters)
-        match = self.miner.match(line)
+        match = self.miner.match(content)
         if match is None:
           continue
 
         template_tokens = match.get_template()  # list[str]
         template_str    = " ".join(template_tokens)
-        params          = self.miner.get_parameter_list(template_tokens, line)
+        params          = self.miner.get_parameter_list(template_tokens, content)
 
         parts = line.split(None, 3)  # date time thread rest
         date_s, time_s, thread_s = (parts + ["", "", ""])[:3]
