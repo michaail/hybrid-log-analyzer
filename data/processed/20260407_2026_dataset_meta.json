@@ -1,0 +1,27 @@
+{
+  "run_tag": "20260407_2026",
+  "labels_source": "anomaly_label.csv",
+  "total_blocks": 575061,
+  "total_anomalous": 16838,
+  "anomaly_rate": 0.029280371995318757,
+  "num_templates": 41,
+  "embed_dim": 520,
+  "node_dim": 529,
+  "edge_dim": 10,
+  "max_seq_len": 32,
+  "seed": 42,
+  "splits": {
+    "train": {
+      "size": 402542,
+      "anomalous": 11787
+    },
+    "val": {
+      "size": 86259,
+      "anomalous": 2525
+    },
+    "test": {
+      "size": 86260,
+      "anomalous": 2526
+    }
+  }
+}
