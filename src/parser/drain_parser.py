@@ -9,24 +9,31 @@ from drain3.template_miner_config import TemplateMinerConfig
 
 class DrainParser:
   """
-  Simple wrapper around Drain3's TemplateMiner for:
+  Wrapper around Drain3's TemplateMiner for:
     - training on a log file
     - exporting learned templates
     - validating template quality heuristically
+
+  Default implementation targets the HDFS log format. Dataset-specific
+  subclasses (e.g. :class:`BGLParser`) can override:
+    - the class attribute ``_HEADER_TOKENS`` (how many prefix tokens to strip)
+    - the hook method :meth:`_extract_row` (what columns to emit per line)
   """
 
-  # Number of leading tokens to strip before passing to Drain.
+  # Number of leading whitespace-separated tokens to strip before passing
+  # the line to Drain.
   # HDFS format: <DDMMYY> <HHMMSS> <thread_id> <LEVEL> <component>: <message>
   # Stripping the first 3 (date, time, thread) removes always-variable header
   # fields; LEVEL and component are kept because they help Drain cluster lines.
-  _HDFS_HEADER_TOKENS = 3
+  _HEADER_TOKENS = 3
 
   @staticmethod
   def _preprocess_line(line: str, strip_tokens: int = 3) -> str:
     """Strip the first `strip_tokens` whitespace-separated tokens from *line*.
 
-    This removes the variable HDFS header (date DDMMYY, time HHMMSS, thread id)
-    so Drain only sees the stable LOG-LEVEL + COMPONENT + MESSAGE portion.
+    This removes the variable header (e.g. date/time/thread for HDFS,
+    label/timestamp/node for BGL) so Drain only sees the stable
+    LEVEL + COMPONENT + MESSAGE portion.
     Returns the original line unchanged if it has fewer tokens than requested.
     """
     parts = line.split(None, strip_tokens)
@@ -63,7 +70,7 @@ class DrainParser:
         if not line:
           continue
 
-        content = self._preprocess_line(line, self._HDFS_HEADER_TOKENS)
+        content = self._preprocess_line(line, self._HEADER_TOKENS)
         result = self.miner.add_log_message(content) # Process the log line through Drain3
         cluster_id = result.get("cluster_id")
 
@@ -88,10 +95,16 @@ class DrainParser:
       print(f"[INFO] Learned {len(self.miner.drain.id_to_cluster)} distinct templates (final).")
 
 
-  def annotate_file(self, log_path: str, max_lines: int | None = None):
-    """Second pass over the log file using the final learned templates.
+  def _extract_row(
+    self,
+    line: str,
+    cluster_id: int,
+    template_str: str,
+    params: List[Any],
+  ) -> Dict[str, Any]:
+    """Hook: build one output row from a matched log line.
 
-    Returns a pandas DataFrame with one row per log line:
+    Default implementation produces HDFS-specific columns:
       - date, time, thread   : raw header fields
       - timestamp            : datetime parsed from date+time
       - raw                  : full original log line
@@ -99,12 +112,46 @@ class DrainParser:
       - template             : final (fully generalised) template string
       - parameters           : list of values extracted for each <*> token
       - block_id             : first blk_XXX value found in the line (or None)
+
+    Subclasses targeting other log formats (e.g. :class:`BGLParser`)
+    should override this method to return an alternative column dict.
     """
     import re
-    import pandas as pd
     from datetime import datetime
 
     BLOCK_RE = re.compile(r"blk_-?\d+")
+
+    parts = line.split(None, 3)  # date time thread rest
+    date_s, time_s, thread_s = (parts + ["", "", ""])[:3]
+
+    try:
+      ts = datetime.strptime(f"{date_s} {time_s}", "%d%m%y %H%M%S")
+    except ValueError:
+      ts = None
+
+    block_match = BLOCK_RE.search(line)
+    block_id    = block_match.group(0) if block_match else None
+
+    return {
+      "date":       date_s,
+      "time":       time_s,
+      "thread":     thread_s,
+      "timestamp":  ts,
+      "raw":        line,
+      "cluster_id": cluster_id,
+      "template":   template_str,
+      "parameters": list(params) if params else [],
+      "block_id":   block_id,
+    }
+
+
+  def annotate_file(self, log_path: str, max_lines: int | None = None):
+    """Second pass over the log file using the final learned templates.
+
+    Returns a pandas DataFrame with one row per log line. Column schema is
+    determined by :meth:`_extract_row` (overridable by subclasses).
+    """
+    import pandas as pd
 
     rows = []
     log_path = Path(log_path)
@@ -115,8 +162,8 @@ class DrainParser:
         if not line:
           continue
 
-        # Strip the same HDFS header tokens that were removed during fit
-        content = self._preprocess_line(line, self._HDFS_HEADER_TOKENS)
+        # Strip the same header tokens that were removed during fit
+        content = self._preprocess_line(line, self._HEADER_TOKENS)
 
         # Match against final templates (does not mutate clusters)
         match = self.miner.match(content)
@@ -127,28 +174,9 @@ class DrainParser:
         template_str    = " ".join(template_tokens)
         params          = self.miner.get_parameter_list(template_tokens, content)
 
-        parts = line.split(None, 3)  # date time thread rest
-        date_s, time_s, thread_s = (parts + ["", "", ""])[:3]
-
-        try:
-          ts = datetime.strptime(f"{date_s} {time_s}", "%d%m%y %H%M%S")
-        except ValueError:
-          ts = None
-
-        block_match = BLOCK_RE.search(line)
-        block_id    = block_match.group(0) if block_match else None
-
-        rows.append({
-          "date":       date_s,
-          "time":       time_s,
-          "thread":     thread_s,
-          "timestamp":  ts,
-          "raw":        line,
-          "cluster_id": match.cluster_id,
-          "template":   template_str,
-          "parameters": list(params) if params else [],
-          "block_id":   block_id,
-        })
+        rows.append(
+          self._extract_row(line, match.cluster_id, template_str, list(params) if params else [])
+        )
 
         if max_lines is not None and i >= max_lines:
           break
