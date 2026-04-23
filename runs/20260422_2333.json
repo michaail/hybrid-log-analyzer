@@ -1,0 +1,22 @@
+{
+  "run_tag": "20260422_2333",
+  "date": "2026-04-22",
+  "dataset": "BGL",
+  "changelog": "Initial BGL pipeline run. Parsed raw BGL logs with Drain using BGL-tuned config (drain_bgl.ini), exported templates and annotated parquet.",
+  "justification": "First run on the BGL dataset to extend the pipeline beyond HDFS and validate parser generalisability on supercomputer logs.",
+  "pipeline_stages": [
+    { "notebook": "ParserBGL.ipynb", "description": "Drain log parsing with drain_bgl.ini → templates + annotated parquet" }
+  ],
+  "input_artifacts": [],
+  "output_artifacts": {
+    "processed": [
+      "data/processed/BGL/20260422_2333_bgl_templates.json",
+      "data/processed/BGL/20260422_2333_bgl_annotated.parquet"
+    ],
+    "models": []
+  },
+  "results": {
+    "dataset_stats": {},
+    "model_metrics": {}
+  }
+}

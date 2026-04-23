@@ -1,7 +1,3 @@
-Disabling PyTorch because PyTorch >= 2.4 is required but found 2.2.2
-PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
-[INFO] Loaded Azure OpenAI config: endpoint=https://ai-galeo097435ai450651996964.services.ai.azure.com/models, model=mistral-small-2503, api_version=2024-10-21
-Initializing LLM
 ### Enriched Log Template:
 
 **Log Template:**

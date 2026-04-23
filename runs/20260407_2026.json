@@ -1,0 +1,122 @@
+{
+  "run_tag": "20260407_2026",
+  "date": "2026-04-07",
+  "dataset": "HDFS",
+  "changelog": "Initial HDFS pipeline run. Parsed raw logs with Drain, enriched templates with an LLM, built per-block sequences and graphs, prepared train/val/test split datasets, and trained AttributeAwareGAE.",
+  "justification": "Baseline run to establish the full end-to-end pipeline for the HDFS dataset from raw log lines to PyG graph and sequence datasets.",
+  "pipeline_stages": [
+    { "notebook": "1_Parser.ipynb",        "description": "Drain log parsing → templates + annotated parquet" },
+    { "notebook": "2_EnrichTemplates.ipynb","description": "LLM enrichment of Drain templates" },
+    { "notebook": "3_Sequencer.ipynb",      "description": "Build per-block event sequences" },
+    { "notebook": "4_Logs2Graphs.ipynb",    "description": "Convert sequences to PyG graphs" },
+    { "notebook": "5_PrepareDataset.ipynb", "description": "Embed templates, build train/val/test splits" },
+    { "notebook": "6_GAE_Training.ipynb",   "description": "Train AttributeAwareGAE (main run, LR=0.01)" },
+    { "notebook": "6_1_GAE_Training copy.ipynb", "description": "Train AttributeAwareGAE (test subset run, LR=0.001)" }
+  ],
+  "input_artifacts": [],
+  "output_artifacts": {
+    "processed": [
+      "data/processed/HDFS/20260407_2026_hdfs_templates.json",
+      "data/processed/HDFS/20260407_2026_hdfs_templates_enriched.json",
+      "data/processed/HDFS/20260407_2026_hdfs_annotated.parquet",
+      "data/processed/HDFS/20260407_2026_hdfs_sequences.parquet",
+      "data/processed/HDFS/20260407_2026_graph_dataset.pt",
+      "data/processed/HDFS/20260407_2026_seq_dataset.npz",
+      "data/processed/HDFS/20260407_2026_embeddings.npz",
+      "data/processed/HDFS/20260407_2026_dataset_meta.json"
+    ],
+    "models": [
+      "models/20260407_2026_attribute_gae.pt",
+      "models/20260407_2026_attribute_gae_old.pt"
+    ]
+  },
+  "results": {
+    "dataset_stats": {
+      "total_blocks": 575061,
+      "total_anomalous": 16838,
+      "anomaly_rate": 0.02928,
+      "num_templates": 41,
+      "embed_dim": 520,
+      "node_dim": 529,
+      "edge_dim": 10,
+      "max_seq_len": 32,
+      "seed": 42,
+      "splits": {
+        "train": { "size": 402542, "anomalous": 11787 },
+        "val":   { "size": 86259,  "anomalous": 2525  },
+        "test":  { "size": 86260,  "anomalous": 2526  }
+      }
+    },
+    "model_metrics": {
+      "gae_main": {
+        "notebook": "6_GAE_Training.ipynb",
+        "model_file": "models/20260407_2026_attribute_gae.pt",
+        "architecture": {
+          "hidden_dim": 128,
+          "latent_dim": 64,
+          "node_dim": 529,
+          "edge_dim": 10
+        },
+        "training": {
+          "epochs": 25,
+          "batch_size": 256,
+          "learning_rate": 0.01,
+          "test_run": false,
+          "loss_weights": { "alpha_structure": 1.0, "beta_node": 1.0, "gamma_edge": 1.0 }
+        },
+        "val": {
+          "best_threshold": 0.14695671,
+          "f1": null,
+          "pr_auc": null,
+          "roc_auc": null,
+          "precision": null,
+          "recall": null
+        },
+        "test": {
+          "f1": null,
+          "pr_auc": null,
+          "roc_auc": null,
+          "precision": null,
+          "recall": null,
+          "confusion_matrix": null
+        },
+        "note": "Notebook outputs were cleared; re-run 6_GAE_Training.ipynb to populate metrics."
+      },
+      "gae_old": {
+        "notebook": "6_1_GAE_Training copy.ipynb",
+        "model_file": "models/20260407_2026_attribute_gae_old.pt",
+        "architecture": {
+          "hidden_dim": 128,
+          "latent_dim": 64,
+          "node_dim": 529,
+          "edge_dim": 10
+        },
+        "training": {
+          "epochs": 25,
+          "batch_size": 256,
+          "learning_rate": 0.001,
+          "test_run": true,
+          "test_samples": 5000,
+          "loss_weights": { "alpha_structure": 1.0, "beta_node": 1.0, "gamma_edge": 1.0 }
+        },
+        "val": {
+          "best_threshold": 0.12821352,
+          "f1": null,
+          "pr_auc": null,
+          "roc_auc": null,
+          "precision": null,
+          "recall": null
+        },
+        "test": {
+          "f1": null,
+          "pr_auc": null,
+          "roc_auc": null,
+          "precision": null,
+          "recall": null,
+          "confusion_matrix": null
+        },
+        "note": "Trained on 5000-sample test-run subset (TEST_RUN=true). Re-run 6_1_GAE_Training copy.ipynb to populate metrics."
+      }
+    }
+  }
+}

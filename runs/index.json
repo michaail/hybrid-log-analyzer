@@ -1,0 +1,21 @@
+{
+  "_comment": "Quick-reference index of all experiment runs. Full details in runs/<run_tag>.json.",
+  "runs": [
+    {
+      "run_tag": "20260407_2026",
+      "date": "2026-04-07",
+      "dataset": "HDFS",
+      "depends_on": [],
+      "summary": "Full HDFS pipeline: parsing → enrichment → sequencing → graphs → dataset prep → GAE training.",
+      "file": "runs/20260407_2026.json"
+    },
+    {
+      "run_tag": "20260422_2333",
+      "date": "2026-04-22",
+      "dataset": "BGL",
+      "depends_on": [],
+      "summary": "Initial BGL parsing run with drain_bgl.ini config.",
+      "file": "runs/20260422_2333.json"
+    }
+  ]
+}
