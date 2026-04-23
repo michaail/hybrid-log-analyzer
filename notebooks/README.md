@@ -2,6 +2,8 @@
 
 This directory contains the core Jupyter notebooks used for log parsing, dataset preparation, and graph construction. These notebooks represent the sequential data preparation pipeline for the Graph Anomaly Detection model.
 
+> **Looking for the *why* behind each step?** See [`PROCESS.md`](./PROCESS.md) — a stage-by-stage process narrative with data-flow diagrams, actual run numbers (575 061 blocks, ROC-AUC 0.9763), and design-decision commentary. This README focuses on *how to run* the notebooks; `PROCESS.md` explains *what they do and why*.
+
 ## 1. Parser (`Parser.ipynb`)
 
 **Objective:** Parse raw HDFS log files into structured templates and annotations using the Drain parsing algorithm.
